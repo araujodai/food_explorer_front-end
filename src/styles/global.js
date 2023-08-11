@@ -14,6 +14,7 @@ export default createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.COLORS.DARK_400};
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    font-family: "Roboto", sans-serif;
     font-size: 1.6rem;
 
     -webkit-font-smoothing: antialiased;
@@ -45,7 +46,7 @@ export default createGlobalStyle`
   }
 
   button, a {
-    font-family: "Poppins", sans-serif;
+    font: 500 1.4rem/2.4rem "Poppins", sans-serif;
     cursor: pointer;
     transition: filter 0.2s;
   }
@@ -57,5 +58,6 @@ export default createGlobalStyle`
   input, textarea {
     font-family: "Roboto", sans-serif;
     font-size: 1.6rem;
+    border: none;
   }
 `;

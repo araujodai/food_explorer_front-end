@@ -5,7 +5,7 @@ import { Button } from "../../components/Button";
 
 import { Container, BrandWrapper, Form } from "./styles";
 
-export default function SignUp() {
+export default function SignIn() {
   return (
     <Container>
       <BrandWrapper>
@@ -14,12 +14,6 @@ export default function SignUp() {
       </BrandWrapper>
 
       <Form>
-        <Input 
-          label="Seu nome" 
-          type="text" 
-          placeholder="Exemplo: Maria da Silva"
-          id="userName"
-        />
 
         <Input 
           label="Email" 
@@ -35,9 +29,9 @@ export default function SignUp() {
           id="userPassword"
         />
 
-        <Button title="Criar conta" />
+        <Button title="Entrar" />
 
-        <a href="#">Já tenho uma conta</a>
+        <a href="#">Criar uma conta</a>
       </Form>
 
     </Container>
