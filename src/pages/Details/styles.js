@@ -34,17 +34,17 @@ export const ContentWrapper = styled.div`
 
   > footer {
     grid-area: footer;
+    margin-top: 5rem;
   }
 `;
 
 export const DishWrapper = styled.div`
-  
-  
   width: 100%;
+  margin-top: 1.6rem;
 
   > img {
       width: 100%;
-      height: 264px;
+      height: 26.4rem;
       object-fit: cover;
       margin-bottom: 1.6rem;
   }
@@ -103,24 +103,24 @@ export const DishManager = styled.div`
     align-items: center;
 
     span {
-      font-size: 22.626px;
+      font-size: 2.2rem;
       font-weight: 700;
       line-height: 160%;
     }
   }
 
   > button {
-    font-size: 10px;
+    font-size: 1rem;
     font-weight: 500;
-    line-height: 16.225px;
+    line-height: 1.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3px;
 
     svg {
-      width: 20px;
-      height: 20px;
+      width: 2rem;
+      height: 2rem;
     }
   }
 `;

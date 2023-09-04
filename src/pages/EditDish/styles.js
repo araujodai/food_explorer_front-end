@@ -34,10 +34,16 @@ export const ContentWrapper = styled.div`
 `;
 
 export const Form = styled.form`
+  margin-top: 2.4rem;
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
   padding-bottom: 5.3rem;
+
+  > h1 {
+    font: 500 3.2rem/140% "Poppins", sans-serif;
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+  }
 
   .buttons {
     display: flex;
@@ -51,11 +57,11 @@ export const IngredientGroup = styled.div`
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
   }
 
-  > div.ingredientsTags {
-    margin-top: 8px;
+  > .tagsWrapper {
+    margin-top: 1.6rem;
     padding: 4px 8px;
 
-    background-color: ${({ theme }) => theme.COLORS.DARK_900};
+    background-color: ${({ theme }) => theme.COLORS.DARK_800};
     border-radius: 8px;
 
     display: flex;

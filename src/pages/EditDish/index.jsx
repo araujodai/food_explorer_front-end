@@ -1,7 +1,7 @@
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
 import { Header } from "../../components/Header";
-import { ButtonText } from "../../components/ButtonText";
+import { ButtonIconText } from "../../components/ButtonIconText";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
@@ -9,6 +9,7 @@ import { SelectCustom } from "../../components/SelectCustom";
 import { IngredientTag } from "../../components/IngredientTag";
 import { Textarea } from "../../components/Textarea";
 import { InputFile } from "../../components/InputFile";
+import { Logo } from "../../components/Logo";
 
 import { Container, ContentWrapper, Form, IngredientGroup } from "./styles";
 
@@ -19,7 +20,7 @@ export default function NewDish() {
 
       <ContentWrapper>
         <main>
-          <ButtonText title="voltar" icon={MdKeyboardArrowLeft} />
+          <ButtonIconText title="voltar" icon={MdKeyboardArrowLeft} />
 
           <Form>
             <h1>Editar prato</h1>
@@ -42,7 +43,7 @@ export default function NewDish() {
             <IngredientGroup>
               <strong>Ingredientes</strong>
               
-              <div className="ingredientsTags">
+              <div className="tagsWrapper">
 
                 <IngredientTag 
                   value="Adicionar"
@@ -78,12 +79,12 @@ export default function NewDish() {
             <div className="buttons">
               <Button 
                 title="Excluir prato"
-                className="delete"
+                className="tertiary"
               />
 
               <Button 
                 title="Salvar alterações"
-                className="createAndEditDish"
+                className="secondary"
               />
           </div>
 

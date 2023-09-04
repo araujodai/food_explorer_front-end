@@ -1,17 +1,15 @@
-import logoIcon from "../../assets/logo.svg";
-
+import { Logo } from "../../components/Logo";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { ButtonIconText } from "../../components/ButtonIconText";
 
-import { Container, BrandWrapper, Form } from "./styles";
+import { Container, Form } from "./styles";
 
 export default function SignIn() {
   return (
     <Container>
-      <BrandWrapper>
-        <img src={logoIcon} alt="Logo" />
-        <h1>food explorer</h1>
-      </BrandWrapper>
+
+      <Logo className="bigSize" />
 
       <Form>
 
@@ -31,7 +29,7 @@ export default function SignIn() {
 
         <Button title="Entrar" />
 
-        <a href="#">Criar uma conta</a>
+        <ButtonIconText title="Cria uma conta" fontSize="14px" />
       </Form>
 
     </Container>

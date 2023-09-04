@@ -1,8 +1,7 @@
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import { FiUpload } from "react-icons/fi";
 
 import { Header } from "../../components/Header";
-import { ButtonText } from "../../components/ButtonText";
+import { ButtonIconText } from "../../components/ButtonIconText";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { Footer } from "../../components/Footer";
@@ -20,7 +19,7 @@ export default function NewDish() {
 
       <ContentWrapper>
         <main>
-          <ButtonText title="voltar" icon={MdKeyboardArrowLeft} />
+          <ButtonIconText title="voltar" icon={MdKeyboardArrowLeft} />
 
           <Form>
             <h1>Novo prato</h1>
@@ -43,7 +42,7 @@ export default function NewDish() {
             <IngredientGroup>
               <strong>Ingredientes</strong>
               
-              <div className="teste">
+              <div className="tagsWrapper">
 
                 <IngredientTag 
                   value="Adicionar"
@@ -78,7 +77,7 @@ export default function NewDish() {
 
             <Button 
               title="Salvar alterações"
-              className="createAndEditDish"
+              className="secondary"
             />
 
           </Form>

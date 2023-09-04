@@ -3,10 +3,9 @@ import { PiReceiptBold } from "react-icons/pi";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
 import { Header } from "../../components/Header";
-import { Footer } from "../../components/Footer";
-import { IconButton } from "../../components/IconButton";
+import { ButtonIconText } from "../../components/ButtonIconText";
 import { Button } from "../../components/Button";
-import { ButtonText } from "../../components/ButtonText";
+import { Footer } from "../../components/Footer";
 
 import { Container, ContentWrapper, DishWrapper, DishInfo, IngredientsList, DishManager } from "./styles";
 
@@ -18,7 +17,7 @@ export default function Details() {
       <ContentWrapper>
 
       <main>
-        <ButtonText title="voltar" icon={MdKeyboardArrowLeft} />
+        <ButtonIconText title="voltar" icon={MdKeyboardArrowLeft} fontSize="24px" size="32px"/>
 
         <DishWrapper>
           <img 
@@ -39,23 +38,26 @@ export default function Details() {
               <span>tomate</span>
               <span>tomate</span>
               <span>tomate</span>
+              <span>tomate</span>
+              <span>tomate</span>
+              <span>tomate</span>
             </IngredientsList>
 
             <DishManager>
               <div>
-                <IconButton 
+                <ButtonIconText 
                   icon={AiOutlineMinus} 
-                  width="27px"
-                  height="27px"
+                  size="27px"
                 />
                 <span>01</span>
-                <IconButton 
+                <ButtonIconText 
                   icon={AiOutlinePlus} 
-                  width="27px"
-                  height="27px"
+                  size="27px"
                 />
               </div>
               <Button title="pedir · R$ 25.00" icon={PiReceiptBold} />
+
+              
             </DishManager>
           </DishInfo>
 
