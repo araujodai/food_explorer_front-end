@@ -15,6 +15,24 @@ export const Container = styled.div`
 export const ContentScrollWrapper = styled.div`
   overflow: overlay;
   grid-area: contentScrollWrapper;
+  /* width: 100%;
+  overflow-x: hidden; */
+
+  display: grid;
+  grid-template-rows: auto min-content;
+  grid-template-areas: 
+  "main"
+  "footer";
+
+  > main {
+    grid-area: main;
+    overflow-y: overlay;
+    overflow-x: auto;
+  }
+
+  > footer {
+    grid-area: footer; 
+  } 
 `;
 
 export const BannerWrapper = styled.div`

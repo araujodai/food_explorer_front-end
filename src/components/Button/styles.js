@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.button`
   width: 100%;
   background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
-  /* padding: 1.2rem 3.2rem; */
   padding: 1.2rem;
   border-radius: 5px;
 
@@ -21,12 +20,12 @@ export const Container = styled.button`
     }
   }
 
-  &.createAndEditDish {
+  &.secondary {
     opacity: 0.8;
     background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
   }
 
-  &.delete {
+  &.tertiary {
     background-color: ${({ theme }) => theme.COLORS.DARK_800};
   }
 `;

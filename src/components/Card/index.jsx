@@ -1,6 +1,7 @@
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 
+import { ButtonIconText } from "../ButtonIconText";
 import { Button } from "../Button";
 
 import { Container, QuantityControl } from "./styles";
@@ -8,9 +9,7 @@ import { Container, QuantityControl } from "./styles";
 export function Card({ image, name, price }) {
   return (
     <Container>
-      <button>
-        <FaRegHeart />
-      </button>
+      <ButtonIconText icon={FaRegHeart} size="24px"/>
 
       <img src={image} />
 
@@ -18,13 +17,11 @@ export function Card({ image, name, price }) {
       <p>R$ {price}</p>
 
       <QuantityControl>
-        <button>
-          <AiOutlineMinus size={24} />
-        </button>
+        <ButtonIconText icon={AiOutlineMinus} size="24px" />
+
         <span>01</span>
-        <button>
-          <AiOutlinePlus size={24} />
-        </button>
+
+        <ButtonIconText icon={AiOutlinePlus} size="24px" />
       </QuantityControl>
       
       <Button title="incluir" />

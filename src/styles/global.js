@@ -19,21 +19,22 @@ export default createGlobalStyle`
 
     -webkit-font-smoothing: antialiased;
 
-    ::-webkit-scrollbar {
-    width: 0.8rem;
-    background-color: transparent;
-    opacity: 0.8;
+    /* ::-webkit-scrollbar {
+      width: 0.8rem;
+      background: transparent;
+      opacity: 0.8;
     }
 
     ::-webkit-scrollbar-thumb {
       border-radius: 0.8rem;
-      background-color: transparent;
-      border: 1px solid lightgray;
+      background: transparent;
+      border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
     }
 
     ::-webkit-scrollbar-button {
       background-color: transparent;
-    }
+    } */
+
   }
 
   a {
@@ -46,7 +47,7 @@ export default createGlobalStyle`
   }
 
   button, a {
-    font: 500 1.4rem/2.4rem "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
     transition: filter 0.2s;
   }
@@ -59,5 +60,10 @@ export default createGlobalStyle`
     font-family: "Roboto", sans-serif;
     font-size: 1.6rem;
     border: none;
+    outline: none;
+  }
+
+  ul {
+    list-style: none;
   }
 `;

@@ -41,7 +41,7 @@ export const SelectWrapper = styled.div`
   background: ${({ theme }) => theme.COLORS.DARK_900};
   width: 100%;
   border-radius: 8px;
-  margin-top: 8px;
+  margin-top: 1.6rem;
 
   display: flex;
   gap: 1.4rem;

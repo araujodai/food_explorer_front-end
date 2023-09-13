@@ -4,8 +4,9 @@ import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 
-import { Footer } from "../Footer";
+import { ButtonIconText } from "../ButtonIconText";
 import { Input } from "../Input";
+import { Footer } from "../Footer";
 
 import { Container, NavWrapper, Mobile } from "./styles";
 
@@ -24,17 +25,25 @@ export function MobileMenu({ isAdmin = false }) {
 
   return (
     <Container>
-      <button className="openMenu" onClick={handleOpenCloseMobileMenu}>
-        <FiMenu size={24} />
-      </button>
+
+      <ButtonIconText 
+        icon={FiMenu} 
+        size="24px" 
+        onClick={handleOpenCloseMobileMenu} 
+        className="openMenu"
+      />
 
       {
         isOpen &&
         <Mobile>
           <header>
-            <button onClick={handleOpenCloseMobileMenu}>
-              <AiOutlineClose size={24} />
-            </button>
+
+            <ButtonIconText 
+              icon={AiOutlineClose} 
+              size="24px" 
+              onClick={handleOpenCloseMobileMenu} 
+            />
+
             <h1>Menu</h1>
           </header>
 

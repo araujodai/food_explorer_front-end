@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.label`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 1.6rem;
   color: ${({ theme }) => theme.COLORS.LIGHT_400};
 
   > div {
@@ -15,6 +15,7 @@ export const Container = styled.label`
     border-radius: 8px;
 
     background: ${({ theme }) => theme.COLORS.DARK_800};
+    font: 500 1.4rem/2.4rem "Poppins", sans-serif;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
     input {

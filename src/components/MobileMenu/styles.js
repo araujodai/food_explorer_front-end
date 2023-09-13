@@ -11,18 +11,16 @@ export const NavWrapper = styled.div`
   padding: 3.6rem 2.8rem 1.2rem;
 
   > ul {
-    list-style: none;
     margin-top: 3.6rem;
 
     li {
       padding: 1rem;
       border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
-      font-family: Poppins;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 300;
-      line-height: 140%; /* 33.6px */
-      color: ${({ theme }) => theme.COLORS.LIGHT_300};
+
+      a {
+        font: 300 2.4rem/140% "Poppins", sans-serif;
+        color: ${({ theme }) => theme.COLORS.LIGHT_300};
+      }
     }
 
     li:last-child {
@@ -53,12 +51,8 @@ export const Mobile = styled.div`
     padding: 5.6rem 2.8rem 2.4rem;
 
     h1 {
-    color: var(--light-light-100, #FFF);
-    font-family: Roboto;
-    font-size: 21px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+      font: 400 2.1rem "Roboto", sans-serif;
     }
   }
 

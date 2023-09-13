@@ -3,20 +3,16 @@ import styled from "styled-components";
 export const Container = styled.div`
  display: flex;
  flex-direction: column;
- gap: 8px;
+ gap: 1.6rem;
 
  > label {
-  font-family: Roboto;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%; /* 16px */
-
+  font: 400 1.6rem/100% "Roboto", sans-serif;
   color: ${({ theme }) => theme.COLORS.LIGHT_400};
  }
 
  > textarea {
   background: ${({ theme }) => theme.COLORS.DARK_800};
+  color: ${({ theme }) => theme.COLORS.LIGHT_300};
   border-radius: 8px;
   resize: none;
 
@@ -24,19 +20,10 @@ export const Container = styled.div`
   height: 17.8rem;
   padding: 1.4rem;
 
-  font-family: Roboto;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 100%; /* 16px */
+  font: 400 1.6rem/100% "Roboto", sans-serif;
 
   &::placeholder {
     color: ${({ theme }) => theme.COLORS.LIGHT_500};
   }
  }
-`;
-
-export const Textarea = styled.textarea`
-  background: ${({ theme }) => theme.COLORS.DARK_800};
-  color: white;
 `;

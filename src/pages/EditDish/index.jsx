@@ -27,6 +27,7 @@ export default function NewDish() {
 
             <InputFile 
               id="mealImage"
+              title="Selecione a imagem para alterá-la"
             />
 
             <Input 

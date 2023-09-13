@@ -1,37 +1,30 @@
-import logoIcon from "../../assets/logo.svg";
 import { PiReceiptBold } from "react-icons/pi";
-import { FiMenu } from "react-icons/fi";
-import { AiOutlineClose } from "react-icons/ai";
+import { Logo } from "../Logo";
 
-import { Container, OpenCloseMenu, BrandWrapper, Cart } from "./styles";
+import { MobileMenu } from "../MobileMenu";
+import { ButtonIconText } from "../ButtonIconText";
+
+import { Container, Cart } from "./styles";
 
 export function Header() {
+  const isAdmin = false;
+
   return (
     <Container>
       <nav>
-        <OpenCloseMenu>
-          <button className="openMenu">
-            <FiMenu size={24} />
-          </button>
+        <MobileMenu isAdmin={isAdmin} />
 
-          <button className="closeMenu">
-            <AiOutlineClose size={24} />
-          </button>
-        </OpenCloseMenu>
-
-        <BrandWrapper>
-          <img src={logoIcon} alt="Logo" />
-          <h1>food explorer</h1>
-        </BrandWrapper>
-
-        <Cart>
-          <button className="cart">
-            <PiReceiptBold size={32} />
-          </button>
-          <div>
+        <Logo isAdmin={isAdmin}/>
+        
+        {
+          !isAdmin &&
+          <Cart>
+            <ButtonIconText icon={PiReceiptBold} size="32px"/>
+            
             <span>0</span>
-          </div>
+            
         </Cart>
+        }
       </nav>
     </Container>
   )

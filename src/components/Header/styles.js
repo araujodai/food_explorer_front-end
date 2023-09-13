@@ -7,8 +7,7 @@ export const Container = styled.header`
   > nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    
+
     margin-top: 3.2rem;
 
     button {
@@ -21,36 +20,10 @@ export const Container = styled.header`
   }
 `;
 
-export const OpenCloseMenu = styled.div`
-  display: flex;
-
-  > .closeMenu {
-    display: none;
-  }
-`;
-
-export const BrandWrapper = styled.div`
-  display: flex;
-  width: fit-content;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  > h1 {
-    font-size: 2.1rem;
-  }
-
-  > img {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-  `;
-
 export const Cart = styled.div`
-  
   position: relative;
-  
-  > div {
+
+  > span {
     background-color: red;
     width: 2rem;
     height: 2rem;
@@ -63,6 +36,6 @@ export const Cart = styled.div`
     right: -3px;
 
     font-size: 1.4rem;
-    line-height: 24px
+    line-height: 2.4rem
   }
 `;
