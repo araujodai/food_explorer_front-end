@@ -12,6 +12,8 @@ export default function SignUp() {
       <Logo className="bigSize" />
 
       <Form>
+        <h2>Crie sua conta</h2>
+
         <Input 
           label="Seu nome" 
           type="text" 
