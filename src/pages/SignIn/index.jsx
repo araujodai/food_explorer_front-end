@@ -12,6 +12,7 @@ export default function SignIn() {
       <Logo className="bigSize" />
 
       <Form>
+        <h2>Faça login</h2>
 
         <Input 
           label="Email" 
