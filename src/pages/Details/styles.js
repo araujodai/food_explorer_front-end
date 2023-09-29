@@ -28,8 +28,31 @@ export const ContentWrapper = styled.div`
 
   > main {
     grid-area: main;
-    padding: 1.6rem 4.6rem;
-    width: 100%;
+    width: min(100%, 1400px);
+    padding: 1.6rem 3rem;
+    justify-self: center;
+
+    .dishManager {
+      display: flex;
+      gap: 1.6rem;
+      align-items: center;
+
+      @media(min-width: 514px) {
+        width: 70%;
+        align-self: center;
+        margin-top: 2.4rem;
+      }
+
+      @media(min-width: 1024px) {
+        max-width: 30rem;
+        align-self: initial;
+        gap: 3rem;
+
+        > button > svg {
+          display: none;
+        }
+      }
+    }
   }
 
   > footer {
@@ -41,33 +64,53 @@ export const ContentWrapper = styled.div`
 export const DishWrapper = styled.div`
   width: 100%;
   margin-top: 1.6rem;
+  text-align: center;
 
   > img {
-      width: 100%;
-      height: 26.4rem;
+      max-width: 26.4rem;
+      max-height: 26.4rem;
       object-fit: cover;
       margin-bottom: 1.6rem;
+      border-radius: 50%;
+  }
+
+  @media(min-width: 1024px) {
+    display: flex;
+    align-items: center;
+    margin-top: 4.2rem;
+    gap: 4rem;
+
+    text-align: left;
+
+    > img {
+      margin: 0;
+      max-width: 39rem;
+      max-height: 39rem;
+    }
   }
 `;
 
 export const DishInfo = styled.div`
+  width: min(100%, 68.7rem);
+  width: 100%;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
   gap: 2.4rem;
 
-  text-align: center;
   color: ${({ theme }) => theme.COLORS.LIGHT_300};
   font-family: "Poppins", sans-serif;
-  line-height: 140%;
 
   > h2 {
-    font-size: 2.7rem;
+    font-size: clamp(2.7rem, 2.7rem + 2vw, 4rem);
     font-weight: 500;
+    line-height: 140%;
   }
 
   > p {
-    font-size: 1.6rem;
+    font-size: clamp(1.6rem, 1.6rem + 2vw, 2.4rem);
     font-weight: 400;
+    line-height: 140%;
   }
 `;
 
@@ -91,36 +134,9 @@ export const IngredientsList = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
   }
-`;
 
-export const DishManager = styled.div`
-  display: flex;
-  gap: 1.6rem;
-
-  > div {
-    display: flex; 
-    gap: 1.5rem;
-    align-items: center;
-
-    span {
-      font-size: 2.2rem;
-      font-weight: 700;
-      line-height: 160%;
-    }
-  }
-
-  > button {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-
-    svg {
-      width: 2rem;
-      height: 2rem;
-    }
+  @media(min-width: 1024px) {
+    justify-content: initial;
+    gap: 2rem;
   }
 `;

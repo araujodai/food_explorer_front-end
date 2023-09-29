@@ -1,9 +1,36 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  > .menu {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
 
-  > .openMenu {
-    display: flex;
+    display: grid;
+    grid-template-rows: min-content auto min-content;
+
+    background: ${({ theme }) => theme.COLORS.DARK_400};
+
+    > header {
+      background: ${({ theme }) => theme.COLORS.DARK_700};
+
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      padding: 5.6rem 2.8rem 2.4rem;
+
+      h1 {
+        color: ${({ theme }) => theme.COLORS.LIGHT_100};
+        font: 400 2.1rem "Roboto", sans-serif;
+      }
+    }
+  }
+
+  @media(min-width: 1024px) {
+    display: none;
   }
 `;
 
@@ -27,33 +54,4 @@ export const NavWrapper = styled.div`
       border: none;
     }
   }
-`;
-
-export const Mobile = styled.div`
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
-
-  display: grid;
-  grid-template-rows: min-content auto min-content;
-
-  background: ${({ theme }) => theme.COLORS.DARK_400};
-
-  > header {
-    background: ${({ theme }) => theme.COLORS.DARK_700};
-
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-    padding: 5.6rem 2.8rem 2.4rem;
-
-    h1 {
-      color: ${({ theme }) => theme.COLORS.LIGHT_100};
-      font: 400 2.1rem "Roboto", sans-serif;
-    }
-  }
-
 `;

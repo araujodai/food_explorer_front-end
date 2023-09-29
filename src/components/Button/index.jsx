@@ -1,14 +1,21 @@
-import { Container } from "./styles";
+import { PrimaryButton, SecondaryButton } from "./styles";
 
-export function Button({ icon: Icon, title, loading = false, ...rest }) {
-  return (
-    <Container
-      type="button"
-      disabled={loading}
-      {...rest}
-    >
-      {Icon && <Icon />}
-      {loading ? "Carregando..." : title}
-    </Container>
-  )
+export function Button({ variant, icon: Icon, title, fontSize, size, ...rest }) {
+  switch (variant) {
+    case "secondary":
+      return (
+        <SecondaryButton fontSize={fontSize} {...rest} >
+          {Icon && <Icon size={size} />}
+          {title && title}
+        </SecondaryButton>
+      )
+
+    default:
+      return (
+        <PrimaryButton type="button" {...rest}>
+          {Icon && <Icon size={size} />}
+          {title}
+        </PrimaryButton>
+      )
+  }
 };

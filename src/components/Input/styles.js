@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   color: ${({ theme }) => theme.COLORS.LIGHT_400};
-  line-height: 100%;
 
   > label {
     display: block;
@@ -36,6 +35,7 @@ export const Container = styled.div`
       background: transparent;
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
       outline: none;
+      line-height: 100%;
 
       &::placeholder {
       color: ${({ theme }) => theme.COLORS.LIGHT_500};

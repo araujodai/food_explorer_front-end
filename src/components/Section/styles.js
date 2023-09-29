@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+ 
 export const Container = styled.section`
   margin: 0 0 2.4rem 2.4rem;
   position: relative;
@@ -11,5 +11,13 @@ export const Container = styled.section`
 
   > div {
     overflow-y: overlay;
+  }
+
+  @media(min-width: 1024px) {
+    margin: 0 0 4.7rem;
+
+    > h2 {
+      font-size: 3.2rem;
+    }
   }
 `;

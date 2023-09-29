@@ -6,7 +6,9 @@ export function Section({ title, children }) {
       <h2>{title}</h2>
 
       <div>
+        <div className="esquerda"></div>
         {children}
+        <div className="direita"></div>
       </div>
     </Container>
   )

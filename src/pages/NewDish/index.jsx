@@ -1,14 +1,13 @@
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
 import { Header } from "../../components/Header";
-import { ButtonIconText } from "../../components/ButtonIconText";
-import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
-import { Footer } from "../../components/Footer";
+import { InputFile } from "../../components/InputFile";
+import { Input } from "../../components/Input";
 import { SelectCustom } from "../../components/SelectCustom";
 import { IngredientTag } from "../../components/IngredientTag";
 import { Textarea } from "../../components/Textarea";
-import { InputFile } from "../../components/InputFile";
+import { Footer } from "../../components/Footer";
 
 import { Container, ContentWrapper, Form, IngredientGroup } from "./styles";
 
@@ -19,7 +18,7 @@ export default function NewDish() {
 
       <ContentWrapper>
         <main>
-          <ButtonIconText title="voltar" icon={MdKeyboardArrowLeft} />
+          <Button variant="secondary" title="voltar" icon={MdKeyboardArrowLeft} />
 
           <Form>
             <h1>Novo prato</h1>
@@ -78,7 +77,7 @@ export default function NewDish() {
 
             <Button 
               title="Salvar alterações"
-              className="secondary"
+              className="light"
             />
 
           </Form>

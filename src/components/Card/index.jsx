@@ -1,30 +1,31 @@
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
+import { RxCaretRight } from "react-icons/rx";
 
-import { ButtonIconText } from "../ButtonIconText";
 import { Button } from "../Button";
+import { Stepper } from "../Stepper";
 
-import { Container, QuantityControl } from "./styles";
+import { Container } from "./styles";
 
-export function Card({ image, name, price }) {
+export function Card({ image, name, description, price }) {
   return (
     <Container>
-      <ButtonIconText icon={FaRegHeart} size="24px"/>
+      <Button variant="secondary" icon={FaRegHeart} size="24px"/>
 
       <img src={image} />
 
-      <h2>{name}</h2>
-      <p>R$ {price}</p>
+      <a href="https://google.com">
+        <h2>{name}</h2>
+        <RxCaretRight size={22} />
+      </a>
 
-      <QuantityControl>
-        <ButtonIconText icon={AiOutlineMinus} size="24px" />
+      <p className="description">{description}</p>
 
-        <span>01</span>
+      <span>R$ {price}</span>
 
-        <ButtonIconText icon={AiOutlinePlus} size="24px" />
-      </QuantityControl>
-      
-      <Button title="incluir" />
+      <div className="quantityControl">
+        <Stepper />
+        <Button title="incluir" />
+      </div>
     </Container>
   )
 };

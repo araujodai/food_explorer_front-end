@@ -4,20 +4,14 @@ import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 
-import { ButtonIconText } from "../ButtonIconText";
+import { Button } from "../Button";
 import { Input } from "../Input";
 import { Footer } from "../Footer";
 
-import { Container, NavWrapper, Mobile } from "./styles";
+import { Container, NavWrapper } from "./styles";
 
-export function MobileMenu({ isAdmin = false }) {
+export function MobileMenu({ isAdmin = false, tabs }) {
   const [isOpen, setIsOpen] = useState(false);
-
-  const navigationTabs = [
-    {name: "Meus favoritos", value: "#", isAdmin: false},
-    {name: "Novo prato", value: "#", isAdmin: true},
-    {name: "Pedidos", value: "#", isAdmin: true},
-  ];
 
   function handleOpenCloseMobileMenu() {
     setIsOpen(prevState => !prevState)
@@ -26,7 +20,8 @@ export function MobileMenu({ isAdmin = false }) {
   return (
     <Container>
 
-      <ButtonIconText 
+      <Button 
+        variant="secondary"
         icon={FiMenu} 
         size="24px" 
         onClick={handleOpenCloseMobileMenu} 
@@ -35,10 +30,10 @@ export function MobileMenu({ isAdmin = false }) {
 
       {
         isOpen &&
-        <Mobile>
+        <div className="menu">
           <header>
-
-            <ButtonIconText 
+            <Button 
+              variant="secondary"
               icon={AiOutlineClose} 
               size="24px" 
               onClick={handleOpenCloseMobileMenu} 
@@ -55,7 +50,7 @@ export function MobileMenu({ isAdmin = false }) {
 
             <ul>
               {
-                navigationTabs.filter(tab => tab.isAdmin == isAdmin)
+                tabs.filter(tab => tab.isAdmin == isAdmin)
                 .map(tab => (
                   <li key={tab.name}>
                     <a href={tab.value}>{tab.name}</a>
@@ -70,7 +65,7 @@ export function MobileMenu({ isAdmin = false }) {
           </NavWrapper>
 
           <Footer />
-        </Mobile>
+        </div>
       }
 
     </Container>

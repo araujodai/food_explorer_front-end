@@ -41,10 +41,7 @@ export const Container = styled.div`
 
     svg {
       color: white;
-
       font-size: 1.6rem;
-      /* width: 8px;
-      height: 8px; */
     }
   }
 `;

@@ -1,7 +1,6 @@
 import { Logo } from "../../components/Logo";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
-import { ButtonIconText } from "../../components/ButtonIconText";
 
 import { Container, Form } from "./styles";
 
@@ -30,7 +29,7 @@ export default function SignIn() {
 
         <Button title="Entrar" />
 
-        <ButtonIconText title="Cria uma conta" fontSize="14px" />
+        <Button variant="secondary" title="Cria uma conta" fontSize="14px" />
       </Form>
 
     </Container>

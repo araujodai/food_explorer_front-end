@@ -25,7 +25,20 @@ export const ContentWrapper = styled.div`
   > main {
     grid-area: main;
     padding: 1rem 2.2rem;
-    width: 100%;
+    width: min(100%, 1400px);
+    justify-self: center;
+    
+    @media(min-width: 768px) {
+      > button {
+        margin-top: 4rem;
+        font-size: 2.4rem;
+
+        svg {
+          width: 3.2rem;
+          height: 3.2rem;
+        }
+      }
+    }
   }
 
   > footer {
@@ -44,6 +57,47 @@ export const Form = styled.form`
     font: 500 3.2rem/140% "Poppins", sans-serif;
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
   }
+
+  @media(min-width: 1024px) {
+    gap: 3.2rem;
+
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 0.6fr 1fr 0.3fr 0.5fr;
+
+  > h1 {
+    grid-row: 1;
+    grid-column: 1 / span 4;
+  }
+
+  > :nth-child(2) {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  > :nth-child(4) {
+    grid-row: 2;
+    grid-column: 3 / span 2;
+
+  }
+
+  > :nth-child(5) {
+    grid-row: 3;
+    grid-column: 1 / span 3;
+  }
+
+  > :nth-child(7) {
+    grid-row: 4;
+    grid-column: 1 / span 4;
+  }
+
+  > button {
+    grid-row: 5;
+    grid-column: 4;
+    max-width: 17.2rem;
+    justify-self: end;
+  }
+}
 `;
 
 export const IngredientGroup = styled.div`  

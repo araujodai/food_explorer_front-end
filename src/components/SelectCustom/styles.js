@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const Select = styled.select`
   width: 100%;
-  padding: 1.4rem;
+  padding: 1.3rem;
   
   border: none;
   outline: none;
@@ -28,8 +28,7 @@ export const Select = styled.select`
   z-index: 1;
 
   > option {
-    background: ${({ theme }) => theme.COLORS.DARK_900};
-    border: none;
+    background: ${({ theme }) => theme.COLORS.DARK_800};
   }
 
   &:hover {
@@ -38,7 +37,7 @@ export const Select = styled.select`
 `;
 
 export const SelectWrapper = styled.div`
-  background: ${({ theme }) => theme.COLORS.DARK_900};
+  background: ${({ theme }) => theme.COLORS.DARK_800};
   width: 100%;
   border-radius: 8px;
   margin-top: 1.6rem;

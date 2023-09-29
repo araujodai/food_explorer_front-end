@@ -5,8 +5,11 @@ import { Container } from "./styles";
 export function Logo({ isAdmin = false, ...rest }) {
   return (
     <Container {...rest}>
-      <img src={logoIcon} alt="Logo" />
-      <h1>food explorer</h1>
+      <div>
+        <img src={logoIcon} alt="Logo" />
+        <h1>food explorer</h1>
+      </div>
+      
       {
         isAdmin &&
         <span>admin</span>
