@@ -8,6 +8,7 @@ export const Container = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    /* border: 1px solid green; */
 
     margin-top: 3.2rem;
 
@@ -39,6 +40,28 @@ export const Container = styled.header`
         display: none;
       }
     }
+
+    /* @media (min-width: 1180px) {
+      
+      margin: 0 auto;
+      width: 1120px;
+    } */
+  }
+
+  @media (min-width: 720px) {
+    padding-inline: 3rem;
+  }
+
+  @media (min-width: 998px) {
+    padding-inline: 4rem;
+  }
+
+  /* @media (min-width: 1180px) {
+    padding-inline: 0;
+  } */
+
+  @media (min-width: 1400px) {
+    padding-inline: 12.3rem;
   }
 `;
 

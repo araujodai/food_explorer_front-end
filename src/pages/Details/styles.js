@@ -28,9 +28,7 @@ export const ContentWrapper = styled.div`
 
   > main {
     grid-area: main;
-    width: min(100%, 1400px);
     padding: 1.6rem 3rem;
-    justify-self: center;
 
     .dishManager {
       display: flex;

@@ -13,6 +13,10 @@ export const Container = styled.section`
     overflow-y: overlay;
   }
 
+  @media(min-width: 768px) {
+    margin: 0 0 4.7rem;
+  }
+
   @media(min-width: 1024px) {
     margin: 0 0 4.7rem;
 

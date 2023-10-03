@@ -11,13 +11,13 @@ import { Footer } from "../../components/Footer";
 
 import { Container, ContentWrapper, Form, IngredientGroup } from "./styles";
 
-export default function NewDish() {
+export function NewDish() {
   return (
     <Container>
       <Header />
 
       <ContentWrapper>
-        <main>
+        <main className="contentMaxWidthWrapper">
           <Button variant="secondary" title="voltar" icon={MdKeyboardArrowLeft} />
 
           <Form>
@@ -25,7 +25,7 @@ export default function NewDish() {
 
             <InputFile 
               id="mealImage"
-              title="Selecione a imagem"
+              title="Selecione imagem"
             />
 
             <Input 

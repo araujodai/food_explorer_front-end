@@ -12,6 +12,18 @@ export const Container = styled.footer`
     font: 400 1.2rem "DM Sans", sans-serif;
     text-align: end;
   }
+
+  @media (min-width: 720px) {
+      padding-inline: 3rem;
+    }
+
+  @media (min-width: 998px) {
+    padding-inline: 4rem;
+  }
+
+  @media (min-width: 1400px) {
+    padding-inline: 12.3rem;
+  }
 `;
 
 export const BrandWrapper = styled.div`

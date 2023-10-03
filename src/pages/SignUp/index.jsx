@@ -4,7 +4,7 @@ import { Button } from "../../components/Button";
 
 import { Container, Form } from "./styles";
 
-export default function SignUp() {
+export function SignUp() {
   return (
     <Container>
 

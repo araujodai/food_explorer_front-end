@@ -6,127 +6,110 @@ export const Container = styled.div`
 
   display: grid;
   grid-template-rows: min-content auto;
-  grid-template-areas: 
+  grid-template-areas:
   "header"
   "contentScrollWrapper";
   overflow: hidden;
-`;
 
-export const ContentScrollWrapper = styled.div`
-  overflow: overlay;
-  grid-area: contentScrollWrapper;
-
-  > main {
-    width: min(100%, 1120px);
-    margin: 0 auto;
-
-    .bannerWrapper {
-      display: flex;
-      padding-top: 2.9rem;
-      position: relative;
-
-      margin: 1.5rem 1.6rem 6.2rem 3.6rem;
-
-      .bannerText {
-        padding: 3.6rem 0 2.2rem 0.5rem;
-        width: 100%;
-        background: ${({ theme }) => theme.COLORS.GRADIENTS_200};
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-        
-
-        h2 {
-          font: 600 1.8rem/140% "Poppins", sans-serif;
-          width: 21.5rem;
-          z-index: 1;
-        }
-
-        p {
-          font: 400 1.2rem/140% "Poppins", sans-serif;
-          width: 21.5rem;
-          z-index: 1;
-        }
-      }
-      
-      > img {
-        width: auto;
-        position: absolute;
-        bottom: 0;
-        left: -30px;
-        z-index: 10;
-      }
-    }
-
-
-    @media(min-width: 1024px) {
-      /* padding-inline: 2rem; */
-
-      .bannerWrapper {
-        margin: 4rem 0 5rem 0;
-        padding-top: 13.2rem;
-        
-
-        img {
-          top: 0;
-          left: -50px;
-          width: min(100%, 63.2rem);
-        }
-
-        .bannerText {
-          padding: 8.7rem 10rem;
-          overflow-y: hidden;
-          
-          h2 {
-            font-size: 4rem;
-            font-weight: 500;
-            width: fit-content;
-          }
-
-          p {
-            font: 400 1.6rem/100% "Roboto", sans-serif;
-            width: fit-content;
-          }
-        }
-      }
-    }
+  > .contentScrollWrapper {
+    overflow: overlay;
+    grid-area: contentScrollWrapper;
   }
 `;
 
 export const BannerWrapper = styled.div`
-  height: 12rem;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  background: ${({ theme }) => theme.COLORS.GRADIENTS_200};
-  margin: 4.4rem 1.6rem 6.2rem 3.6rem;
   position: relative;
+  margin: 1.5rem 1.6rem 6.2rem 0.6rem;
 
   > img {
-    width: auto;
-    height: 149px; 
+    width: 50%;
+    height: auto;
+    min-height: 12rem;
 
-    object-fit: cover;
+    + .desktop {
+      display: none;
+    }
+  }
+
+  > div {
     position: absolute;
-    left: -30px; 
-    bottom: 0; 
+    left: 40%;
+    top: 50%;
+    transform: translateY(-20%);
+    font-family: "Poppins", sans-serif;
+
+    h2 {
+      font-size: clamp(18px, calc(10px + 2vw), 40px);
+      font-weight: 600;
+      line-height: 140%;
+    }
+
+    p {
+      font-size: clamp(12px, calc(4px + 2vw), 16px);
+      font-weight: 400;
+      line-height: 140%;
+    }
   }
-`;
 
-export const BannerContent = styled.div`
-  width: 215px;
-  padding-left: 5px;
-  z-index: 1;
-  
-  color: ${({ theme }) => theme.COLORS.LIGHT_300};
-  text-align: left; 
-
-  h2 {
-    font: 600 1.8rem/140% "Poppins", sans-serif;
+  &::before {
+    content: "";
+    width: 95%;
+    height: 81%;
+    background: ${({ theme }) => theme.COLORS.GRADIENTS_200};
+    border-radius: 3px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
   }
 
-  p {
-    font: 400 1.2rem/140% "Poppins", sans-serif;
+  @media (min-width: 720px) {
+    margin-right: 0;
+
+    > img {
+      position: relative;
+      left: -1.8rem;
+    }
+
+    &::before {
+      width: 98%;
+    }
+  }
+
+  @media (min-width: 900px) {
+    margin: 1.5rem 0 6.3rem 0;
+
+    > img.mobile {
+      display: none;
+    }
+
+    > img.desktop  {
+      display: initial;
+      max-width: 63.2rem;
+    }
+
+    > div {
+      transform: translateY(2%);
+
+      h2 {
+        font-weight: 500;
+      }
+    }
+
+    &::before {
+      width: 100%;
+      height: 70%;
+    }
+  }
+
+  @media (min-width: 1180px) {
+    > img.desktop {
+      left: -5rem;
+    }
+
+    > div {
+      left: 45%;
+    }
   }
 `;

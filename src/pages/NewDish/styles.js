@@ -14,21 +14,23 @@ export const Container = styled.div`
 
 export const ContentWrapper = styled.div`
   grid-area: contentWrapper;
-  overflow: overlay;
-
+  width: 100%;
+  
   display: grid;
   grid-template-rows: auto min-content;
   grid-template-areas: 
   "main"
   "footer";
+  overflow-x: overlay;
 
   > main {
     grid-area: main;
-    padding: 1rem 2.2rem;
-    width: min(100%, 1400px);
-    justify-self: center;
     
-    @media(min-width: 768px) {
+    @media (max-width: 1024px) {
+      padding: 1rem 2.8rem;
+    }
+
+    @media(min-width: 1024px) {
       > button {
         margin-top: 4rem;
         font-size: 2.4rem;

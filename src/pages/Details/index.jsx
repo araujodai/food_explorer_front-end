@@ -8,13 +8,13 @@ import { Footer } from "../../components/Footer";
 
 import { Container, ContentWrapper, DishWrapper, DishInfo, IngredientsList } from "./styles";
 
-export default function Details() {
+export function Details() {
   return (
     <Container>
       <Header />
 
       <ContentWrapper>
-        <main>
+        <main className="contentMaxWidthWrapper">
           <Button variant="secondary" title="voltar" icon={MdKeyboardArrowLeft} fontSize="24px" size="32px"/>
 
           <DishWrapper>

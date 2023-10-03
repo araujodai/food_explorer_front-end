@@ -9,6 +9,12 @@ export default createGlobalStyle`
 
   html {
     font-size: 62.5%;
+
+    ::-webkit-scrollbar-thumb {
+    border-radius: 0.8rem;
+    background: transparent;
+    border: 1px solid red;
+  }
   }
 
   body {
@@ -19,22 +25,23 @@ export default createGlobalStyle`
 
     -webkit-font-smoothing: antialiased;
 
-    /* ::-webkit-scrollbar {
-      width: 0.8rem;
-      background: transparent;
-      opacity: 0.8;
+    @media (min-width: 1024px) {
+      ::-webkit-scrollbar {
+        width: 0.5rem;
+        background: transparent;
+        opacity: 0.8;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        border-radius: 0.8rem;
+        background: transparent;
+        border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
+      }
+
+      ::-webkit-scrollbar-button {
+        background-color: transparent;
+      }
     }
-
-    ::-webkit-scrollbar-thumb {
-      border-radius: 0.8rem;
-      background: transparent;
-      border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_600};
-    }
-
-    ::-webkit-scrollbar-button {
-      background-color: transparent;
-    } */
-
   }
 
   img {
@@ -70,5 +77,22 @@ export default createGlobalStyle`
 
   ul {
     list-style: none;
+  }
+
+  .contentMaxWidthWrapper {
+    width: min(100%, 1120px);
+    margin: 0 auto;
+
+    @media (min-width: 720px) {
+      padding-inline: 3rem;
+    }
+
+    @media (min-width: 998px) {
+      padding-inline: 4rem;
+    }
+
+    @media (min-width: 1180px) {
+      padding-inline: 0;
+    }
   }
 `;

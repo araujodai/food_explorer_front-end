@@ -9,7 +9,7 @@ import "./styles.css";
 
 export function CarouselCustom({ children }) {
 
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
 
   const swiperParams = {
     slidesPerView: 2,
@@ -20,16 +20,19 @@ export function CarouselCustom({ children }) {
       enabled: true,
     },
     breakpoints: {
+      481: {
+        slidesPerView: 3,
+      },
       515: {
         slidesPerView: 3,
         spaceBetween: 20,
       },
       768: {
-        slidesPerView: 4,
+        slidesPerView: 'auto',
         spaceBetween: 27,
       },
       1024: {
-        slidesPerView: 'auto',
+        // slidesPerView: 'auto',
         spaceBetween: 30,
       },
     },
@@ -38,7 +41,7 @@ export function CarouselCustom({ children }) {
 
   useEffect(() => {
     function handleResize() {
-      setIsDesktop(window.innerWidth >= 768);
+      setIsDesktop(window.innerWidth >= 1024);
     };
 
     window.addEventListener('resize', handleResize);
