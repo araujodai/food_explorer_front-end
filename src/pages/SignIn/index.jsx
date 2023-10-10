@@ -1,10 +1,23 @@
+import { useState } from "react";
+
 import { Logo } from "../../components/Logo";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
+import { useAuth } from "../../hooks/auth";
+
 import { Container, Form } from "./styles";
 
 export function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { signIn } = useAuth();
+
+  function handleSignIn() {
+    signIn({ email, password });
+  };
+
   return (
     <Container>
 
@@ -18,6 +31,7 @@ export function SignIn() {
           type="email" 
           placeholder="Exemplo: exemplo@email.com"
           id="userEmail"
+          onChange={e => setEmail(e.target.value)}
         />
 
         <Input 
@@ -25,9 +39,10 @@ export function SignIn() {
           type="password" 
           placeholder="No mínimo 6 caracteres"
           id="userPassword"
+          onChange={e => setPassword(e.target.value)}
         />
 
-        <Button title="Entrar" />
+        <Button title="Entrar" onClick={handleSignIn} />
 
         <Button variant="secondary" title="Cria uma conta" fontSize="14px" />
       </Form>
