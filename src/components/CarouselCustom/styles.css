@@ -1,7 +1,3 @@
-.swiper {
-  max-width: fit-content;
-}
-
 .swiper-slide {
   display: flex;
   width: fit-content !important;
@@ -9,7 +5,7 @@
 }
 
 .swiper-button-prev, .swiper-button-next {
-  height: 100%;
+  height: fit-content;
   top: 50%;
   transform: translateY(-50%);
   margin: auto 0;
@@ -41,6 +37,7 @@
     width: 250px;
     height: 100%;
     background: linear-gradient(270deg, rgba(0, 10, 15, 0) 0%, #000A0F 100%);
+    pointer-events: none;
   }
   
   .swiper::after {
@@ -52,5 +49,6 @@
     width: 250px;
     height: 100%;
     background: linear-gradient(90deg, rgba(0, 10, 15, 0) 0%, #000A0F 100%);
+    pointer-events: none;
   }
 }

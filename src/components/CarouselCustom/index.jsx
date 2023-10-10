@@ -15,7 +15,7 @@ export function CarouselCustom({ children }) {
     slidesPerView: 2,
     spaceBetween: 16,
     navigation: isDesktop ? true : false,
-    loop: true,
+    rewind: true,
     keyboard: {
       enabled: true,
     },
@@ -29,10 +29,10 @@ export function CarouselCustom({ children }) {
       },
       768: {
         slidesPerView: 'auto',
-        spaceBetween: 27,
+        spaceBetween: 30,
       },
       1024: {
-        // slidesPerView: 'auto',
+        slidesPerView: 'auto',
         spaceBetween: 30,
       },
     },
