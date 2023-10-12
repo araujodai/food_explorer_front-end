@@ -29,28 +29,6 @@ export const ContentWrapper = styled.div`
   > main {
     grid-area: main;
     padding: 1.6rem 3rem;
-
-    .dishManager {
-      display: flex;
-      gap: 1.6rem;
-      align-items: center;
-
-      @media(min-width: 514px) {
-        width: 70%;
-        align-self: center;
-        margin-top: 2.4rem;
-      }
-
-      @media(min-width: 1024px) {
-        max-width: 30rem;
-        align-self: initial;
-        gap: 3rem;
-
-        > button > svg {
-          display: none;
-        }
-      }
-    }
   }
 
   > footer {
@@ -109,6 +87,39 @@ export const DishInfo = styled.div`
     font-size: clamp(1.6rem, 1.6rem + 2vw, 2.4rem);
     font-weight: 400;
     line-height: 140%;
+  }
+
+  > .dishManager {
+    display: flex;
+    gap: 1.6rem;
+    align-items: center;
+
+    @media(min-width: 514px) {
+      width: 70%;
+      align-self: center;
+      margin-top: 2.4rem;
+    }
+
+    @media(min-width: 1024px) {
+      max-width: 30rem;
+      align-self: initial;
+      gap: 3rem;
+
+      > button > svg {
+        display: none;
+      }
+    }
+  }
+
+  > .buttonAdmin {
+    @media (min-width: 768px) {
+      max-width: 13.2rem;
+      align-self: center;
+    }
+
+    @media(min-width: 1024px) {
+      align-self: start;
+    }
   }
 `;
 
