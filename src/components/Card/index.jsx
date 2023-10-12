@@ -42,25 +42,27 @@ export function Card({ isAdmin = false, data }) {
   };
 
   useEffect(() => {
-    async function fetchFavorites() {
-      try {
-        const response = await api.get("/favorites");
-        const userFavorites = response.data;
-        const isFavorite = userFavorites.some(favorite => favorite.menu_item_id === data.id);
-        setFavorite(isFavorite);
-
-      } catch (error) {
-        if (error.response) {
-          alert(error.response.data.message);
-
-        } else {
-          alert("Erro ao buscar pelos favoritos, tente novamente.");
+    if (!isAdmin) {
+      async function fetchFavorites() {
+        try {
+          const response = await api.get("/favorites");
+          const userFavorites = response.data;
+          const isFavorite = userFavorites.some(favorite => favorite.menu_item_id === data.id);
+          setFavorite(isFavorite);
+  
+        } catch (error) {
+          if (error.response) {
+            alert(error.response.data.message);
+  
+          } else {
+            alert("Erro ao buscar pelos favoritos, tente novamente.");
+          };
         };
       };
+  
+      fetchFavorites();
     };
-
-    fetchFavorites();
-  }, []);
+  }, [data.id, isAdmin]);
 
   return (
     <Container>
