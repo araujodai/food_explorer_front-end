@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 21rem;
+  min-height: 29.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 1.2rem;
   padding: 2.4rem;
 
@@ -30,6 +32,7 @@ export const Container = styled.div`
     width: 8.8rem;
     height: 8.8rem;
     object-fit: cover;
+    border-radius: 50%;
   }
 
   > a {
@@ -65,6 +68,7 @@ export const Container = styled.div`
 
   @media(min-width: 1024px) {
     width: 30.4rem;
+    min-height: 46.2rem; 
     gap: 1.5rem;
 
     > img {
