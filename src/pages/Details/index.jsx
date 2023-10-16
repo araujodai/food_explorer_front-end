@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
+import { useCart } from "../../hooks/cart";
 
 import { PiReceiptBold } from "react-icons/pi";
 import { MdKeyboardArrowLeft } from "react-icons/md";
@@ -20,6 +21,8 @@ export function Details() {
 
   const { user } = useAuth();
   const isAdmin = user.is_admin ? true : false;
+
+  const { handleAddToCart } = useCart();
 
   const params = useParams();
   const navigate = useNavigate();
@@ -110,6 +113,7 @@ export function Details() {
                       title={`incluir · R$ ${data.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}
                       icon={PiReceiptBold} 
                       size="20px"
+                      onClick={() => handleAddToCart(data)}
                     />
                   </div>
                 }
