@@ -1,3 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
+import { useAuth } from "../../hooks/auth";
+import { useCart } from "../../hooks/cart";
+
 import { PiReceiptBold, PiSignOutBold } from "react-icons/pi";
 import { FiSearch } from "react-icons/fi";
 
@@ -9,7 +14,8 @@ import { Button } from "../Button";
 import { Container, DesktopMenu } from "./styles";
 
 export function Header() {
-  const isAdmin = false;
+  const { user, signOut } = useAuth();
+  const isAdmin = user.is_admin ? true : false;
 
   const navigationTabs = [
     {name: "Meus favoritos", value: "#", isAdmin: false},
@@ -17,7 +23,10 @@ export function Header() {
     {name: "Pedidos", value: "#", isAdmin: true},
     {name: "Hitórico de pedidos", value: "#", isAdmin: false},
   ];
-  const amount = 3;
+
+  const { amount, getTotalAmount } = useCart();
+
+  const navigate = useNavigate();
 
   return (
 
@@ -48,12 +57,12 @@ export function Header() {
           {
             !isAdmin ? (
             <Button
-              title={`Pedidos (${amount})`} 
+              title={`Pedido (${getTotalAmount()})`} 
               icon={PiReceiptBold} 
               size="32px" 
             />
             ) : (
-              <Button title="Novo prato" />
+              <Button title="Novo prato" onClick={() => navigate("/new")} />
             )
           }
 
@@ -61,6 +70,7 @@ export function Header() {
             variant="secondary" 
             icon={PiSignOutBold} 
             size="32px" 
+            onClick={signOut}
           />
 
         </DesktopMenu>
