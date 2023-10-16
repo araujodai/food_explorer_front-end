@@ -35,8 +35,18 @@ export function Details() {
 
   useEffect(() => {
     async function fetchMenuItem() {
-      const response = await api.get(`/menu/${params.id}`);
-      setData(response.data);
+      try {
+        const response = await api.get(`/menu/${params.id}`);
+        setData(response.data);
+
+      } catch (error) {
+        if (error.response) {
+          alert(error.response.data.message);
+
+        } else {
+          alert("Não foi possível carregar as informações desse item, tente novamente.");
+        };
+      };
     };
 
     fetchMenuItem();
