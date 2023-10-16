@@ -5,6 +5,7 @@ import { RxCaretRight } from "react-icons/rx";
 
 import { api } from "../../services/api";
 import imagePlaceholder from "../../assets/menu_item_image_placeholder.png";
+import { useCart } from "../../hooks/cart";
 
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
@@ -14,6 +15,8 @@ import { Container } from "./styles";
 export function Card({ isAdmin = false, data }) {
   const imageUrl = data.image ? `${api.defaults.baseURL}/files/${data.image}` : imagePlaceholder;
   const [ favorite, setFavorite ] = useState(false);
+  const { handleAddToCart } = useCart();
+
   const navigate = useNavigate();
 
   function handleEdit() {
@@ -62,7 +65,7 @@ export function Card({ isAdmin = false, data }) {
   
       fetchFavorites();
     };
-  }, [data.id, isAdmin]);
+  }, []);
 
   return (
     <Container>
@@ -101,7 +104,10 @@ export function Card({ isAdmin = false, data }) {
         !isAdmin &&
         <div className="quantityControl">
           <Stepper />
-          <Button title="incluir" />
+          <Button 
+            title="incluir" 
+            onClick={() => handleAddToCart(data)}
+          />
         </div>
       }
     </Container>
