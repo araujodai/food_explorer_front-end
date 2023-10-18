@@ -1,3 +1,7 @@
+.swiper {
+  padding-right: 3rem;
+}
+
 .swiper-slide {
   display: flex;
   width: fit-content !important;

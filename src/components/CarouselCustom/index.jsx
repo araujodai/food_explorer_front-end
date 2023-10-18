@@ -12,10 +12,9 @@ export function CarouselCustom({ children }) {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
 
   const swiperParams = {
-    slidesPerView: 2,
+    slidesPerView: "auto",
     spaceBetween: 16,
     navigation: isDesktop ? true : false,
-    rewind: true,
     keyboard: {
       enabled: true,
     },
