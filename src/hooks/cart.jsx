@@ -37,10 +37,6 @@ function CartProvider({ children }) {
     return cart.reduce((total, item) => total + item.amount, 0);
   };
 
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
-
   return (
     <CartContext.Provider value={{ 
       cart, 
