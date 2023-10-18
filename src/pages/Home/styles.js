@@ -14,6 +14,25 @@ export const Container = styled.div`
   > .contentScrollWrapper {
     overflow: overlay;
     grid-area: contentScrollWrapper;
+
+    display: grid;
+    grid-template-rows: auto min-content;
+    grid-template-columns: 100%;
+
+
+    .empty {
+      display: flex;
+      width: 100%;
+      align-self: center;
+      justify-content: center;
+      gap: 1rem;
+      padding-block: 4rem;
+
+      p, svg {
+        color: ${({ theme }) => theme.COLORS.LIGHT_700};
+        font-size: clamp(1.8rem, calc(1rem + 2vw), 3rem);
+      }
+    }
   }
 `;
 
