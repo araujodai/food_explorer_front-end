@@ -1,11 +1,11 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
-import { FiSearch } from "react-icons/fi";
 
 import { Button } from "../Button";
-import { Input } from "../Input";
+import { SearchBar } from "../SearchBar";
 import { Footer } from "../Footer";
 
 import { Container, NavWrapper } from "./styles";
@@ -13,8 +13,23 @@ import { Container, NavWrapper } from "./styles";
 export function MobileMenu({ isAdmin = false, tabs }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   function handleOpenCloseMobileMenu() {
     setIsOpen(prevState => !prevState)
+  };
+
+  function handleSearchResults(event) {
+    if(event.key === "Enter" || event.type === "click") {
+      if (!isHome) {
+        navigate("/");
+
+      } else {
+        setIsOpen(prevState => !prevState);
+      };
+    };
   };
 
   return (
@@ -43,9 +58,9 @@ export function MobileMenu({ isAdmin = false, tabs }) {
           </header>
 
           <NavWrapper>
-            <Input 
-              icon={FiSearch}
-              placeholder="Busque por pratos ou ingredientes"
+
+            <SearchBar 
+              onKeyPress={handleSearchResults}
             />
 
             <ul>
