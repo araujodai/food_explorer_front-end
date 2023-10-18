@@ -9,6 +9,7 @@ export const Container = styled.header`
     align-items: center;
     justify-content: space-between;
     /* border: 1px solid green; */
+    
 
     margin-top: 3.2rem;
 
@@ -31,6 +32,18 @@ export const Container = styled.header`
         font-size: 1.4rem;
         line-height: 2.4rem
       }
+    }
+
+    .searchBar {
+      position: relative;
+      
+    }
+
+    .searchResultList {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      
     }
 
     @media(min-width: 1024px) {
