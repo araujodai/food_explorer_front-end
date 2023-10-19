@@ -13,9 +13,12 @@ import { Stepper } from "../Stepper";
 import { Container } from "./styles";
 
 export function Card({ isAdmin = false, data }) {
-  const imageUrl = data.image ? `${api.defaults.baseURL}/files/${data.image}` : imagePlaceholder;
   const [ favorite, setFavorite ] = useState(false);
+  const [ quantity, setQuantity ] = useState(1);
+
   const { handleAddToCart } = useCart();
+
+  const imageUrl = data.image ? `${api.defaults.baseURL}/files/${data.image}` : imagePlaceholder;
 
   const navigate = useNavigate();
 
@@ -96,17 +99,28 @@ export function Card({ isAdmin = false, data }) {
         <RxCaretRight size={22} />
       </Link>
 
-      <p className="description">{data.description}</p>
+      <p className="description">
+        {data.description}
+      </p>
 
-      <span>R$ {data.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+      <span>
+        R$ {data.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+      </span>
 
       {
         !isAdmin &&
         <div className="quantityControl">
-          <Stepper />
+          <Stepper 
+            quantity={quantity} 
+            setQuantity={setQuantity}
+          />
+
           <Button 
             title="incluir" 
-            onClick={() => handleAddToCart(data)}
+            onClick={() => {
+              handleAddToCart({data, quantity}); 
+              setQuantity(1);
+            }}
           />
         </div>
       }

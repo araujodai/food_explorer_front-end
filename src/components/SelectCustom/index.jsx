@@ -3,14 +3,24 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { Container, SelectWrapper, Select } from "./styles";
 
+export const options = [
+  {label: "Entradas", value: "entrances"},
+  {label: "Refeições", value: "meals"},
+  {label: "Sobremesas", value: "desserts"},
+  {label: "Bebidas", value: "drinks"},
+  {label: "Porções", value: "portions"},
+];
+
 export function SelectCustom({ title, id, ...rest }) {
-  const options = [
-    {label: "Entradas", value: "entrances"},
-    {label: "Refeições", value: "meals"},
-    {label: "Sobremesas", value: "desserts"},
-    {label: "Bebidas", value: "drinks"},
-    {label: "Porções", value: "portions"},
-  ];
+  // const categories = [
+  //   {label: "Entradas", value: "entrances"},
+  //   {label: "Refeições", value: "meals"},
+  //   {label: "Sobremesas", value: "desserts"},
+  //   {label: "Bebidas", value: "drinks"},
+  //   {label: "Porções", value: "portions"},
+  // ];
+
+  const categories = options;
 
   const [selectOpen, setSelectOpen] = useState(false);
   const selectRef = useRef(null);
@@ -43,11 +53,11 @@ export function SelectCustom({ title, id, ...rest }) {
           onClick={toggleDropdown}
         >
           {
-            options.map(option => (
+            categories.map(category => (
               <option 
-                key={option.value}
-                label={option.label}
-                value={option.value}
+                key={category.value}
+                label={category.label}
+                value={category.value}
               />
             ))
           }

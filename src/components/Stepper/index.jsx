@@ -1,14 +1,26 @@
-import { useState } from "react";
-import { useCart } from "../../hooks/cart";
-
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 import { Button } from "../Button";
 
 import { Container } from "./styles";
 
-export function Stepper() {
-  const { amount, handleAddUnit, handleRemoveUnit } = useCart();
+export function Stepper({ quantity, setQuantity }) {
+  
+  function handleAddUnit() {
+    if (quantity < 10) {
+      setQuantity(prevState => prevState + 1);
+    } else {
+      alert("Você atingiu o máximo permitido.");
+    }
+  };
+
+ function handleRemoveUnit() {
+    if (quantity > 1) {
+      setQuantity(prevState => prevState - 1);
+    } else {
+      alert("A quantidade mínima é de 01 unidade.");
+    }
+  };  
 
   return (
     <Container>
@@ -20,7 +32,7 @@ export function Stepper() {
       />
 
       <span>
-        {String(amount).padStart(2, "0")}
+        {String(quantity).padStart(2, "0")}
       </span>
 
       <Button 

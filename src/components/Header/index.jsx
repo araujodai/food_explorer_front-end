@@ -16,8 +16,8 @@ export function Header() {
   const { user, signOut } = useAuth();
   const isAdmin = user.is_admin ? true : false;
 
-  const { amount, getTotalAmount } = useCart();
-
+  const { cart, cartItems } = useCart();
+  
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -35,6 +35,10 @@ export function Header() {
     {name: "Hitórico de pedidos", value: "#", isAdmin: false},
   ];
 
+  function teste() {
+    console.log(cart);
+  };
+
   return (
     <Container>
       <nav>
@@ -50,7 +54,7 @@ export function Header() {
               icon={PiReceiptBold} 
               size="32px"
             />
-            <span>{amount}</span>
+            <span>{cartItems}</span>
           </div>
         }
 
@@ -63,9 +67,10 @@ export function Header() {
           {
             !isAdmin ? (
             <Button
-              title={`Pedido (${getTotalAmount()})`} 
+              title={`Pedido (${cartItems})`}
               icon={PiReceiptBold} 
               size="32px" 
+              onClick={teste}
             />
             ) : (
               <Button title="Novo prato" onClick={() => navigate("/new")} />

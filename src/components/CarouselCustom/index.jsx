@@ -15,6 +15,7 @@ export function CarouselCustom({ children }) {
     slidesPerView: "auto",
     spaceBetween: 16,
     navigation: isDesktop ? true : false,
+    loop: true,
     keyboard: {
       enabled: true,
     },
