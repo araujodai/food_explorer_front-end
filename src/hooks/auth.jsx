@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { api } from "../services/api";
+import { notify } from "../components/Notification";
 
 export const AuthContext = createContext({});
 
@@ -20,10 +21,10 @@ function AuthProvider({ children }) {
 
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        notify.error(error.response.data.message);
 
       } else {
-        alert("Não foi possível realizar o login, tente novamente.");
+        notify.error("Não foi possível realizar o login, tente novamente.");
       };
     };
 
