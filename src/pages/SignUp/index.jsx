@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Logo } from "../../components/Logo";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { notify } from "../../components/Notification";
 
 import { Container, Form } from "./styles";
 
@@ -17,22 +18,27 @@ export function SignUp() {
 
   function handleSignUp() {
     if (!name || !email || !password) {
-      return alert("Preencha todos os campos.");
+      return notify.error("Preencha todos os campos");
+    };
+
+    if (password && password.length < 6) {
+      return notify.error("Crie uma senha com o mínimo de 6 caracteres.");
     };
 
     api.post("/users", { name, email, password })
       .then(() => {
-        alert("Usuário cadastrado com sucesso.");
+        notify.success("Usuário cadastrado com sucesso.");
         navigate("/");
       })
       .catch(error => {
         if (error.response) {
-          alert(error.response.data.message);
+          notify.error(error.response.data.message);
+
         } else {
-          alert("Não foi possível cadastrar este usuário.");
+          notify.error("Não foi possível cadastrar este usuário.");
         };
       })
-  }
+  };
 
   return (
     <Container>
@@ -66,9 +72,17 @@ export function SignUp() {
           onChange={e => setPassword(e.target.value)}
         />
 
-        <Button title="Criar conta" onClick={handleSignUp} />
+        <Button  
+          title="Criar conta" 
+          onClick={handleSignUp} 
+        />
 
-        <Button variant="secondary" title="Já tenho uma conta" fontSize="1.4rem"/>
+        <Button 
+          variant="secondary" 
+          title="Já tenho uma conta" 
+          fontSize="1.4rem"
+          onClick={() => navigate("/")}
+        />
       </Form>
 
     </Container>
