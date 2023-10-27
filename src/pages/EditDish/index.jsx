@@ -13,6 +13,7 @@ import { SelectCustom } from "../../components/SelectCustom";
 import { IngredientTag } from "../../components/IngredientTag";
 import { Textarea } from "../../components/Textarea";
 import { Footer } from "../../components/Footer";
+import { notify } from "../../components/Notification";
 
 import { Container, ContentWrapper, Form, IngredientGroup } from "./styles";
 
@@ -59,15 +60,15 @@ export function EditDish() {
       menuItem.append("description", description);
   
       await api.put(`/menu/${params.id}`, menuItem);
-      alert("Item atualizado com sucesso!");
+      notify.success("Item atualizado com sucesso!");
       navigate("/");
 
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        notify.error(error.response.data.message);
 
       } else {
-        alert("Não foi possível atualizar esse item, tente novamente.");
+        notify.error("Não foi possível atualizar esse item, tente novamente.");
       };
     };
   };
@@ -79,15 +80,15 @@ export function EditDish() {
       try {
         await api.delete(`menu/${params.id}`);
   
-        alert("Item removido com sucesso.");
+        notify.success("Item removido com sucesso.");
         navigate("/");
         
       } catch (error) {
         if (error.response) {
-          alert(error.response.data.message);
+          notify.error(error.response.data.message);
   
         } else {
-          alert("Não foi possível remover esse item, tente novamente.");
+          notify.error("Não foi possível remover esse item, tente novamente.");
         };
       };
     };
@@ -108,10 +109,10 @@ export function EditDish() {
 
       } catch (error) {
         if (error.response) {
-          alert(error.response.data.message);
+          notify.error(error.response.data.message);
   
         } else {
-          alert("Não foi possível carregar as informações deste item, tente novamente.");
+          notify.error("Não foi possível carregar as informações deste item, tente novamente.");
         }
       };
     };

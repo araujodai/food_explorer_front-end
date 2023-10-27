@@ -4,9 +4,9 @@ import { useAuth } from "../../hooks/auth";
 import { useSearch } from "../../hooks/search";
 import { api } from "../../services/api";
 
+import { MdNoMealsOuline } from "react-icons/md";
 import bannerImageMobile from "../../assets/macaroons_and_fruits_banner_image.png";
 import bannerImageDesktop from "../../assets/macaroons_and_fruits_banner_image_desktop.png";
-import { MdNoMealsOuline } from "react-icons/md";
 
 import { Header } from "../../components/Header";
 import { Section } from "../../components/Section";
@@ -14,6 +14,7 @@ import { Card } from "../../components/Card";
 import { Footer } from "../../components/Footer";
 import { CarouselCustom } from "../../components/CarouselCustom";
 import { options } from "../../components/SelectCustom";
+import { notify } from "../../components/Notification";
 
 import { Container, BannerWrapper } from "./styles";
 
@@ -34,10 +35,10 @@ export function Home() {
 
       } catch (error) {
         if (error.response) {
-          alert(error.response.data.message);
+          notify.error(error.response.data.message);
 
         } else {
-          alert("Erro ao carregar o menú, tente novamente mais tarde.");
+          notify.error("Erro ao carregar o menú, tente novamente mais tarde.");
         };
       };
     };

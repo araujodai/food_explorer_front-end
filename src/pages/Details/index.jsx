@@ -13,6 +13,7 @@ import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { Stepper } from "../../components/Stepper";
 import { Footer } from "../../components/Footer";
+import { notify } from "../../components/Notification";
 
 import { Container, ContentWrapper, DishWrapper, DishInfo, IngredientsList } from "./styles";
 
@@ -44,10 +45,10 @@ export function Details() {
 
       } catch (error) {
         if (error.response) {
-          alert(error.response.data.message);
+          notify.error(error.response.data.message);
 
         } else {
-          alert("Não foi possível carregar as informações desse item, tente novamente.");
+          notify.error("Não foi possível carregar as informações desse item, tente novamente.");
         };
       };
     };

@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+
 import { PiHeartStraightBold, PiHeartFill, PiPencilSimpleDuotone } from "react-icons/pi"; 
 import { RxCaretRight } from "react-icons/rx";
+import imagePlaceholder from "../../assets/menu_item_image_placeholder.png";
 
 import { api } from "../../services/api";
-import imagePlaceholder from "../../assets/menu_item_image_placeholder.png";
 import { useCart } from "../../hooks/cart";
 
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
+import { notify } from "../Notification"
 
 import { Container } from "./styles";
 
@@ -39,10 +41,10 @@ export function Card({ isAdmin = false, data }) {
 
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        notify.error(error.response.data.message);
 
       } else {
-        alert("Erro ao processar a solicitação, tente novamente.");
+        notify.error("Erro ao processar a solicitação, tente novamente.");
       };
     };
   };
@@ -58,10 +60,10 @@ export function Card({ isAdmin = false, data }) {
   
         } catch (error) {
           if (error.response) {
-            alert(error.response.data.message);
+            notify.error(error.response.data.message);
   
           } else {
-            alert("Erro ao buscar pelos favoritos, tente novamente.");
+            notify.error("Erro ao buscar pelos favoritos, tente novamente.");
           };
         };
       };

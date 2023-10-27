@@ -1,5 +1,5 @@
 .swiper {
-  padding-right: 3rem;
+  /* padding-right: 3rem; */
 }
 
 .swiper-slide {
@@ -16,6 +16,12 @@
 
   width: 5rem;
   color: #FFFFFF;
+}
+
+.swiper-button-prev, 
+.swiper-button-next {
+  top: 50%;
+  transform: translateY(-100%);
 }
 
 .swiper-button-prev {

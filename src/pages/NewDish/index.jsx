@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
 import { Header } from "../../components/Header";
@@ -10,6 +11,7 @@ import { SelectCustom } from "../../components/SelectCustom";
 import { IngredientTag } from "../../components/IngredientTag";
 import { Textarea } from "../../components/Textarea";
 import { Footer } from "../../components/Footer";
+import { notify } from "../../components/Notification";
 
 import { api } from "../../services/api";
 
@@ -54,15 +56,15 @@ export function NewDish() {
   
       await api.post("/menu", menuItem);
   
-      alert("Item criado com sucesso!");
+      notify.success("Item criado com sucesso!");
       navigate(-1);
 
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        notify.error(error.response.data.message);
 
       } else {
-        alert("Não foi possível criar esse item, verifique e tente novamente.");
+        notify.error("Não foi possível criar esse item, verifique e tente novamente.");
       };
     };
   };

@@ -15,26 +15,26 @@ export function CarouselCustom({ children }) {
     slidesPerView: "auto",
     spaceBetween: 16,
     navigation: isDesktop ? true : false,
-    loop: true,
+    // loop: true,
     keyboard: {
       enabled: true,
     },
     breakpoints: {
-      481: {
-        slidesPerView: 3,
-      },
+      // 481: {
+      //   slidesPerView: 3,
+      // },
       515: {
-        slidesPerView: 3,
+        // slidesPerView: 3,
         spaceBetween: 20,
       },
       768: {
-        slidesPerView: 'auto',
+        // slidesPerView: 'auto',
         spaceBetween: 30,
       },
-      1024: {
-        slidesPerView: 'auto',
-        spaceBetween: 30,
-      },
+      // 1024: {
+      //   slidesPerView: 'auto',
+      //   spaceBetween: 30,
+      // },
     },
     modules: [Navigation, Keyboard],
   };
