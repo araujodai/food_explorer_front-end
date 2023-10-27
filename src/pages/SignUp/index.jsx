@@ -16,7 +16,9 @@ export function SignUp() {
 
   const navigate = useNavigate();
 
-  function handleSignUp() {
+  function handleSignUp(event) {
+    event.preventDefault();
+
     if (!name || !email || !password) {
       return notify.error("Preencha todos os campos");
     };
@@ -38,6 +40,10 @@ export function SignUp() {
           notify.error("Não foi possível cadastrar este usuário.");
         };
       })
+  };
+
+  function handleGoToSignIn() {
+    navigate("/");
   };
 
   return (
@@ -72,7 +78,8 @@ export function SignUp() {
           onChange={e => setPassword(e.target.value)}
         />
 
-        <Button  
+        <Button 
+          type="submit" 
           title="Criar conta" 
           onClick={handleSignUp} 
         />
@@ -81,7 +88,7 @@ export function SignUp() {
           variant="secondary" 
           title="Já tenho uma conta" 
           fontSize="1.4rem"
-          onClick={() => navigate("/")}
+          onClick={handleGoToSignIn}
         />
       </Form>
 

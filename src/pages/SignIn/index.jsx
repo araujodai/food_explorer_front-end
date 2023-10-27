@@ -18,16 +18,18 @@ export function SignIn() {
 
   const navigate = useNavigate();
 
-  function handleCreateAccount() {
-    navigate("/register");
-  };
+  function handleSignIn(event) {
+    event.preventDefault();
 
-  function handleSignIn() {
     if (!email || !password) {
       return notify.error("Preencha todos os campos.");
     };
     
     signIn({ email, password });
+  };
+
+  function handleCreateAccount() {
+    navigate("/register");
   };
 
   return (
@@ -54,11 +56,15 @@ export function SignIn() {
           onChange={e => setPassword(e.target.value)}
         />
 
-        <Button title="Entrar" onClick={handleSignIn} />
+        <Button 
+          type="submit"
+          title="Entrar" 
+          onClick={handleSignIn}
+        />
 
         <Button 
           variant="secondary" 
-          title="Cria uma conta" 
+          title="Criar uma conta" 
           fontSize="14px" 
           onClick={handleCreateAccount}
         />
