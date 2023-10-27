@@ -4,7 +4,7 @@ export function Button({ variant, icon: Icon, title, fontSize, size, ...rest }) 
   switch (variant) {
     case "secondary":
       return (
-        <SecondaryButton fontSize={fontSize} {...rest} >
+        <SecondaryButton type="button" fontSize={fontSize} {...rest} >
           {Icon && <Icon size={size} />}
           {title && title}
         </SecondaryButton>
