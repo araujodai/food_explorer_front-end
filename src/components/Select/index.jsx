@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-import { Container, SelectWrapper, Select } from "./styles";
+import { Container, SelectWrapper, SelectCustom } from "./styles";
 
-export const options = [
+export const categories = [
   {label: "Entradas", value: "entrances"},
   {label: "Refeições", value: "meals"},
   {label: "Sobremesas", value: "desserts"},
@@ -11,17 +11,7 @@ export const options = [
   {label: "Porções", value: "portions"},
 ];
 
-export function SelectCustom({ title, id, ...rest }) {
-  // const categories = [
-  //   {label: "Entradas", value: "entrances"},
-  //   {label: "Refeições", value: "meals"},
-  //   {label: "Sobremesas", value: "desserts"},
-  //   {label: "Bebidas", value: "drinks"},
-  //   {label: "Porções", value: "portions"},
-  // ];
-
-  const categories = options;
-
+export function Select({ onChange }) {
   const [selectOpen, setSelectOpen] = useState(false);
   const selectRef = useRef(null);
 
@@ -44,14 +34,16 @@ export function SelectCustom({ title, id, ...rest }) {
 
   return (
     <Container>
-      <label>{title}</label>
+      <label>Categoria</label>
+
       <SelectWrapper >
-        <Select 
-          required 
-          {...rest} 
+        <SelectCustom 
           ref={selectRef} 
+          required
+          onChange={onChange}
           onClick={toggleDropdown}
         >
+          <option disabled selected>Selecione</option>
           {
             categories.map(category => (
               <option 
@@ -61,7 +53,7 @@ export function SelectCustom({ title, id, ...rest }) {
               />
             ))
           }
-        </Select>
+        </SelectCustom>
 
         {selectOpen ? <FaChevronUp size={24} /> : <FaChevronDown size={24} />}
       </SelectWrapper>

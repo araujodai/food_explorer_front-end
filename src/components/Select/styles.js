@@ -10,7 +10,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Select = styled.select`
+export const SelectCustom = styled.select`
   width: 100%;
   padding: 1.3rem;
   

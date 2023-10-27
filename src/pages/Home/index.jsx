@@ -13,7 +13,7 @@ import { Section } from "../../components/Section";
 import { Card } from "../../components/Card";
 import { Footer } from "../../components/Footer";
 import { CarouselCustom } from "../../components/CarouselCustom";
-import { options } from "../../components/SelectCustom";
+import { categories } from "../../components/Select";
 import { notify } from "../../components/Notification";
 
 import { Container, BannerWrapper } from "./styles";
@@ -63,20 +63,20 @@ export function Home() {
           </BannerWrapper>
 
           {
-            options
-            .filter(option => menu.some(card => card.category === option.value))
-            .map(option => (
+            categories
+            .filter(category => menu.some(menuItem => menuItem.category === category.value))
+            .map(category => (
               <Section
-                key={option.value}
-                title={option.label}
+                key={category.value}
+                title={category.label}
               >
                 <CarouselCustom>
                   {
-                    menu.filter(card => card.category === option.value)
-                      .map(card => (
+                    menu.filter(menuItem => menuItem.category === category.value)
+                      .map(menuItem => (
                         <Card 
-                        key={String(card.id)}
-                        data={card}
+                        key={String(menuItem.id)}
+                        data={menuItem}
                         isAdmin={isAdmin}
                       />
                       ))

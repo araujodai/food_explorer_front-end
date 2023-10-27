@@ -7,7 +7,7 @@ import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { InputFile } from "../../components/InputFile";
 import { Input } from "../../components/Input";
-import { SelectCustom } from "../../components/SelectCustom";
+import { Select } from "../../components/Select";
 import { IngredientTag } from "../../components/IngredientTag";
 import { Textarea } from "../../components/Textarea";
 import { Footer } from "../../components/Footer";
@@ -99,8 +99,7 @@ export function NewDish() {
               onChange={e => setName(e.target.value)}
             />
             
-            <SelectCustom
-              title="Categoria"
+            <Select
               onChange={e => setCategory(e.target.value)}
             />
 
