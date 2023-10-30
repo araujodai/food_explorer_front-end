@@ -11,7 +11,11 @@ export function Input({ icon: Icon, label, id, ...rest }) {
       }
       <div>
         {Icon && <Icon />}
-        <input id={id} name={id} {...rest} />
+        <input 
+          id={id} 
+          name={id} 
+          {...rest} 
+        />
       </div>
     </Container>
   );

@@ -14,15 +14,10 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     gap: 1.4rem;
-
+    
     background-color: ${({ theme }) => theme.COLORS.DARK_800};
     border-radius: 8px;
     padding: 1.2rem 1.4rem;
-
-    &:focus-within {
-      border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
-      transition: border 0.3s ease;
-    }
 
     svg {
       width: 2.4rem;
@@ -38,9 +33,8 @@ export const Container = styled.div`
       line-height: 100%;
 
       &::placeholder {
-      color: ${({ theme }) => theme.COLORS.LIGHT_500};
-    }
-
+        color: ${({ theme }) => theme.COLORS.LIGHT_500};
+      }
     }
   }
 `;
