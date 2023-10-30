@@ -3,28 +3,20 @@ import { FiPlus, FiX } from "react-icons/fi";
 import { Container } from "./styles";
 
 export function IngredientTag({ value, isNew = false, onClick, ...rest }) {
-
   return (
-    <Container $isNew={isNew}>
+    <Container isnew={isNew}>
       {
-        isNew ? 
-        (
-          <input 
-          type="text" 
-          value={value}
-          placeholder="Adicionar"
-          {...rest}
-        />
+        isNew ? (
+          <input type="text" value={value} placeholder="Adicionar" {...rest} />
         ) : (
-          <span>
-            {value}
-          </span>
+          <span>{value}</span>
         )
       }
 
       <button
-        type="button"
+        type={isNew ? "submit" : "button"}
         onClick={onClick}
+        disabled={!value}
       >
         {isNew ? <FiPlus /> : <FiX />}
       </button>
