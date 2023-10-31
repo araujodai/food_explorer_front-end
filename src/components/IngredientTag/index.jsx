@@ -4,7 +4,7 @@ import { Container } from "./styles";
 
 export function IngredientTag({ value, isNew = false, onClick, ...rest }) {
   return (
-    <Container isnew={isNew}>
+    <Container $isNew={isNew}>
       {
         isNew ? (
           <input type="text" value={value} placeholder="Adicionar" {...rest} />

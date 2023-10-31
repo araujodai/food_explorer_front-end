@@ -6,12 +6,12 @@ export const Container = styled.div`
   width: fit-content;
   gap: 8px;
 
-  background-color: ${({ theme, isnew }) => isnew ? "transparent" : theme.COLORS.LIGHT_600};
+  background-color: ${({ theme, $isNew }) => $isNew ? "transparent" : theme.COLORS.LIGHT_600};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
   font: 400 1.6rem/100% "Roboto", sans-serif;
   padding: 1rem 1.6rem;
 
-  border: ${({ theme, isnew }) => isnew && `1px dashed ${theme.COLORS.LIGHT_500}`};
+  border: ${({ theme, $isNew }) => $isNew && `1px dashed ${theme.COLORS.LIGHT_500}`};
   border-radius: 8px;
 
   > span {
