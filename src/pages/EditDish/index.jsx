@@ -9,7 +9,7 @@ import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { InputFile } from "../../components/InputFile";
 import { Input } from "../../components/Input";
-import { Select } from "../../components/Select";
+import { SelectCustom } from "../../components/SelectCustom";
 import { IngredientTag } from "../../components/IngredientTag";
 import { Textarea } from "../../components/Textarea";
 import { Footer } from "../../components/Footer";
@@ -104,7 +104,7 @@ export function EditDish() {
         setName(data.name);
         setCategory(data.category);
         setIngredients(data.ingredients.map(ingredient => ingredient.name));
-        setPrice(data.price);
+        setPrice(data.price.toFixed(2));
         setDescription(data.description);
 
       } catch (error) {
@@ -150,9 +150,10 @@ export function EditDish() {
               onChange={e => setName(e.target.value)}
             />
             
-            <Select
+             <SelectCustom 
+              title="Categoria" 
+              onChange={setCategory} 
               value={category}
-              onChange={e => setCategory(e.target.value)}
             />
 
             <IngredientGroup>
@@ -180,11 +181,12 @@ export function EditDish() {
 
             <Input 
               label="Preço" 
-              type="text" 
+              type="number" 
               placeholder="R$ 00,00"
               id="dishPrice"
               value={price}
               onChange={e => setPrice(e.target.value)}
+
             />
 
             <Textarea 

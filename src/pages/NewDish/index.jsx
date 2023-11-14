@@ -13,6 +13,8 @@ import { Textarea } from "../../components/Textarea";
 import { Footer } from "../../components/Footer";
 import { notify } from "../../components/Notification";
 
+import { SelectCustom } from "../../components/SelectCustom";
+
 import { api } from "../../services/api";
 
 import { Container, ContentWrapper, Form, IngredientGroup } from "./styles";
@@ -25,7 +27,7 @@ export function NewDish() {
   const [ ingredients, setIngredients ] = useState([]);
   const [ newIngredient, setNewIngredient ] = useState("");
 
-  const [ price, setPrice ] = useState("");
+  const [ price, setPrice ] = useState(0);
   const [ description, setDescription ] = useState("");
 
   const navigate = useNavigate();
@@ -44,6 +46,14 @@ export function NewDish() {
   };
 
   async function handleNewMenuItem() {
+    if (!name || !category || !ingredients || !price || !description) {
+      return notify.error("Preencha todos os campos para continuar.");
+    };
+
+    if (newIngredient) {
+      return notify.error("Existe um ingrediente pendente, adicione para continuar");
+    };
+
     try {
       const menuItem = new FormData();
   
@@ -98,9 +108,10 @@ export function NewDish() {
               id="dishName"
               onChange={e => setName(e.target.value)}
             />
-            
-            <Select
-              onChange={e => setCategory(e.target.value)}
+
+            <SelectCustom 
+              title="Categoria" 
+              onChange={setCategory} 
             />
 
             <IngredientGroup>
@@ -128,7 +139,7 @@ export function NewDish() {
 
             <Input 
               label="Preço" 
-              type="text" 
+              type="number" 
               placeholder="R$ 00,00"
               id="dishPrice"
               onChange={e => setPrice(e.target.value)}
