@@ -45,7 +45,8 @@ export function EditDish() {
   };
 
   function handleUpdateImage(event) {
-    setImage(event.target.files[0]);
+    const file = event.target.files[0];
+    setImage(file);
   };
 
   async function handleUpdateMenuItem() {
@@ -100,7 +101,6 @@ export function EditDish() {
         const response = await api.get(`/menu/${params.id}`);
         const data = response.data;
 
-        setImage(data.image);
         setName(data.name);
         setCategory(data.category);
         setIngredients(data.ingredients.map(ingredient => ingredient.name));
@@ -137,7 +137,7 @@ export function EditDish() {
 
             <InputFile 
               id="mealImage"
-              title={image ? "Trocar imagem" : "Adicionar imagem"}
+              title="Trocar imagem" 
               onChange={handleUpdateImage}
             />
 

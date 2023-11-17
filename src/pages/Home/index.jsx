@@ -13,7 +13,7 @@ import { Section } from "../../components/Section";
 import { Card } from "../../components/Card";
 import { Footer } from "../../components/Footer";
 import { CarouselCustom } from "../../components/CarouselCustom";
-import { categories } from "../../components/Select";
+import { categories } from "../../components/SelectCustom";
 import { notify } from "../../components/Notification";
 
 import { Container, BannerWrapper } from "./styles";

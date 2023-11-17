@@ -7,13 +7,12 @@ import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { InputFile } from "../../components/InputFile";
 import { Input } from "../../components/Input";
-import { Select } from "../../components/Select";
+import { SelectCustom } from "../../components/SelectCustom";
 import { IngredientTag } from "../../components/IngredientTag";
 import { Textarea } from "../../components/Textarea";
 import { Footer } from "../../components/Footer";
 import { notify } from "../../components/Notification";
 
-import { SelectCustom } from "../../components/SelectCustom";
 
 import { api } from "../../services/api";
 
