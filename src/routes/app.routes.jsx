@@ -4,6 +4,7 @@ import { Home } from "../pages/Home";
 import { Details } from "../pages/Details";
 import { NewDish } from "../pages/NewDish";
 import { EditDish } from "../pages/EditDish";
+import { Orders } from "../pages/Orders";
 
 export function AppRoutes() {
   return (
@@ -12,6 +13,7 @@ export function AppRoutes() {
       <Route path="/details/:id" element={<Details />} />
       <Route path="/new" element={<NewDish />} />
       <Route path="/edit/:id" element={<EditDish />} />
+      <Route path="/orders" element={<Orders />} />
     </Routes>
   );
 };
