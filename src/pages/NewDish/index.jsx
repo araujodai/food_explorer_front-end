@@ -7,12 +7,11 @@ import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { InputFile } from "../../components/InputFile";
 import { Input } from "../../components/Input";
-import { SelectCustom } from "../../components/SelectCustom";
+import { SelectCustom, categories } from "../../components/SelectCustom";
 import { IngredientTag } from "../../components/IngredientTag";
 import { Textarea } from "../../components/Textarea";
 import { Footer } from "../../components/Footer";
 import { notify } from "../../components/Notification";
-
 
 import { api } from "../../services/api";
 
@@ -108,10 +107,14 @@ export function NewDish() {
               onChange={e => setName(e.target.value)}
             />
 
-            <SelectCustom 
-              title="Categoria" 
-              onChange={setCategory} 
-            />
+            <label>
+              Categoria
+              <SelectCustom 
+                options={categories}
+                onChange={setCategory}
+                name="dishCategory"
+              />
+            </label>
 
             <IngredientGroup>
               <strong>Ingredientes</strong>

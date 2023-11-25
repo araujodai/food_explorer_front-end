@@ -60,6 +60,13 @@ export const Form = styled.form`
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
   }
 
+  > label:nth-child(4) {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+  }
+
   .buttons {
     display: flex;
     gap: 1rem;

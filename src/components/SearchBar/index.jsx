@@ -23,6 +23,7 @@ export function SearchBar({ onKeyPress }) {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         onKeyPress={onKeyPress}
+        name="searchDish"
       />
 
       {

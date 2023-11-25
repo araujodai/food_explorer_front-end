@@ -7,7 +7,7 @@ export function IngredientTag({ value, isNew = false, onClick, ...rest }) {
     <Container $isNew={isNew}>
       {
         isNew ? (
-          <input type="text" value={value} placeholder="Adicionar" {...rest} />
+          <input type="text" value={value} placeholder="Adicionar" name="dishIngredient" {...rest} />
         ) : (
           <span>{value}</span>
         )

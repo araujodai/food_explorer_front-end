@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
 
+import { GoDotFill } from "react-icons/go";
+
 import { Container, customStyles } from "./styles";
 
 export const categories = [
@@ -11,8 +13,15 @@ export const categories = [
   { label: "Porções", value: "portions" },
 ];
 
-export function SelectCustom({ title, onChange, value }) {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+export const status = [
+  { label: "Pendente", value: "pending" },
+  { label: "Preparando", value: "preparing" },
+  { label: "Entregue", value: "delivered" },
+  { label: "Cancelado", value: "canceled" },
+];
+
+export function SelectCustom({ options, onChange, value, icon: Icon, className }) {
+  const [ selectValue, setSelectValue ] = useState(null);
 
   function handleCategoryChange(selectedOption) {
     onChange(selectedOption.value);
@@ -20,25 +29,25 @@ export function SelectCustom({ title, onChange, value }) {
 
   useEffect(() => {
     if (value) {
-      const selectedOption = categories.find(category => category.value === value);
-      setSelectedCategory(selectedOption);
+      const selectedOption = options.find(option => option.value === value);
+      setSelectValue(selectedOption);
     };
   }, [value]);
 
   return (
     <Container>
-      {title}
-
       <Select
-        options={categories}
+        options={options}
         onChange={handleCategoryChange}
-        placeholder="Selecione"
         isSearchable={false}
-        name="dishCategory"
-        id="dishCategory"
-        styles={customStyles}
-        value={selectedCategory}
+        placeholder="Selecione"
+        styles={customStyles(Icon)}
+        value={selectValue}
       />
+
+      { Icon && 
+        <GoDotFill className={className} size={16}/>
+      }
     </Container>
   );
 };

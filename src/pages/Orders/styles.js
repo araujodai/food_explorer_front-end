@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import theme from "../../styles/theme";
 
 export const Container = styled.div`
   width: 100%;
@@ -26,12 +25,46 @@ export const ContentWrapper = styled.div`
 
   > main {
     grid-area: main;
-    padding: 5.6rem 3.5rem 2rem; // ver necessidade de aplicar aqui e nao na div dos orders
+    padding-block: 5.6rem 2rem;
 
     h1 {
       font: 500 3.2rem/140% "Poppins", sans-serif;
-      color: ${({ theme }) => theme.COLORS.LIGHT_300};
       margin-bottom: 2.4rem;
+    }
+
+    > .ordersWrapper {
+      .pending {
+        color: ${({ theme }) => theme.COLORS.TOMATO_300};
+      }
+
+      .preparing {
+        color: ${({ theme }) => theme.COLORS.CARROT_100};
+      }
+
+      .delivered {
+        color: ${({ theme }) => theme.COLORS.MINT_100};
+      }
+
+      .canceled {
+        color: ${({ theme }) => theme.COLORS.LIGHT_500};
+      }
+    }
+
+    @media (max-width: 998px) {
+      padding-inline: 3.5rem;
+    }
+
+    @media(min-width: 1024px) {
+      padding-block: 3.5rem;
+
+      > h1 {
+        margin-bottom: 3.5rem;
+      }
+
+      > .ordersWrapper {
+        border: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
+        border-radius: 8px 8px 0 0;
+      }
     }
   }
 
@@ -40,7 +73,7 @@ export const ContentWrapper = styled.div`
   }
 `;
 
-export const Order = styled.div`
+export const OrderCard = styled.div`
   border: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
   border-radius: 8px;
   padding: 2.4rem;
@@ -66,78 +99,84 @@ export const Order = styled.div`
     -webkit-box-orient: vertical;
   }
 
-  > div {
-    position: relative;
-    margin-top: 0;
+  @media(min-width: 1024px) {
+    display: grid;
+    grid-template-rows: 80px;
+    grid-template-columns: 2fr 1.5fr 5fr 1.5fr;
+    /* height: 80px; */
+    display: none;
 
-    span {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-40%);
-      left: 15px;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: 0;
+    border-bottom-width: 1px;
 
-      &.pending {
-        background: ${({ theme }) => theme.COLORS.TOMATO_300};
-      }
+    > strong {
+      grid-row: 1;
+      grid-column: 2;
+      border: 1px solid red;
+      align-self: center;
+      padding-inline: 2.4rem;
+    }
 
-      &.preparing {
-        background: ${({ theme }) => theme.COLORS.CARROT_100};
-      }
+    > span {
+      grid-row: 1;
+      grid-column: 4;
+      border: 1px solid green;
+      align-self: center;
+      padding-inline: 2.4rem;
+    }
 
-      &.delivered {
-        background: ${({ theme }) => theme.COLORS.MINT_100};
-      }
+    > p {
+      grid-row: 1;
+      grid-column: 3;
+      border: 1px solid white;
+      align-self: center;
+      padding-inline: 2.4rem;
+    }
 
-      &.canceled {
-        background: ${({ theme }) => theme.COLORS.LIGHT_500};
-      }
+    > div {
+      grid-row: 1;
+      grid-column: 1;
+      border: 1px solid orange;
+      align-self: center;
+      margin-inline: 2.4rem;
     }
   }
 `;
 
-export const customStyles = {
-  control: (provided, state) => ({
-    ...provided,
-    backgroundColor: theme.COLORS.DARK_800,
-    padding: "5px 5px 5px 20px",
-    fontSize: "14px",
-    borderRadius: "8px",
-    borderColor: state.isFocused ? theme.COLORS.LIGHT_100 : "transparent",
-    borderWidth: 1,
-    borderStyle: "solid",
-    boxShadow: "none",
-    outline: "none",
-    '&:hover': {
-      outline: "none",
-    },
-  }),
-  option: (provided, state) => ({
-    ...provided,
-    backgroundColor: theme.COLORS.DARK_800,
-    color: theme.COLORS.LIGHT_300,
-    borderColor: state.isFocused ? theme.COLORS.LIGHT_100 : "transparent",
-    borderWidth: 1,
-    borderStyle: "solid", 
-    padding: "10px 16px",
-    '&:active': {
-      backgroundColor: theme.COLORS.DARK_800,
-    },
-  }),
-  singleValue: (provided) => ({
-    ...provided,
-    color: theme.COLORS.LIGHT_300,
-    
-  }),
-  menu: (provided) => ({
-    ...provided,
-    backgroundColor: theme.COLORS.DARK_800,
-  }),
+export const Table = styled.table`
+  border-collapse: collapse;
+  width: 100%;
+  display: none;
+  font-size: 1.4rem;
 
-  indicatorSeparator: (provided) => ({
-    ...provided,
-    display: 'none',
-  }),
-};
+  > thead tr th {
+    padding: 2.1rem 2.4rem;
+    text-align: start;
+    border-bottom: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
+
+    + th {
+      border-left: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
+    }
+  }
+
+  > tbody tr {
+    + tr {
+      border-top: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
+    }
+
+    > td {
+      padding: 1.6rem 2.4rem;
+
+      + td {
+        border-left: 2px solid ${({ theme }) => theme.COLORS.DARK_1000};
+      }
+    }
+  }
+
+  @media(min-width: 1024px) {
+    display: inline-table;
+  }
+
+`;
