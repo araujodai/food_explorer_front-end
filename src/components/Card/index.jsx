@@ -6,7 +6,9 @@ import { RxCaretRight } from "react-icons/rx";
 import imagePlaceholder from "../../assets/menu_item_image_placeholder.png";
 
 import { api } from "../../services/api";
-import { useCart } from "../../hooks/cart";
+// import { useCart } from "../../hooks/cart";
+
+import { useCart } from "../../hooks/order";
 
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
