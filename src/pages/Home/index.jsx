@@ -15,11 +15,13 @@ import { Footer } from "../../components/Footer";
 import { CarouselCustom } from "../../components/CarouselCustom";
 import { categories } from "../../components/SelectCustom";
 import { notify } from "../../components/Notification";
+import { Loading } from "../../components/Loading";
 
 import { Container, BannerWrapper } from "./styles";
 
 export function Home() {
   const [ menu, setMenu ] = useState([]);
+  const [ isLoading, setIsLoading ] = useState(false);
 
   const { user } = useAuth();
   const isAdmin = user.is_admin ? true : false;
@@ -27,13 +29,22 @@ export function Home() {
   const { search, setNoResults, noResults } = useSearch();
 
   useEffect(() => {
+    setIsLoading(true);
+
     async function fetchMenuItems() {
       try {
         const response = await api.get(`/menu?search=${search}`);
         setMenu(response.data);
         setNoResults(response.data.length === 0);
+        
+        //linha teste
+        // setTimeout(() => {
+        //   setIsLoading(false);
+        // }, 3000);
+        setIsLoading(false);
 
       } catch (error) {
+        setIsLoading(false);
         if (error.response) {
           notify.error(error.response.data.message);
 
@@ -49,6 +60,9 @@ export function Home() {
   return (
     <Container>
       <Header />
+
+      {/* {isLoading && <Loading />} */}
+
       <div className="contentScrollWrapper">
         <main className="contentMaxWidthWrapper">
 
@@ -61,6 +75,9 @@ export function Home() {
               <p>Sinta o cuidado do preparo com ingredientes selecionados.</p>
             </div>
           </BannerWrapper>
+
+          {/* {isLoading && <Loading />} */}
+          <Loading isVisible={isLoading} />
 
           {
             categories

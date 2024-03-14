@@ -6,6 +6,8 @@ import { NewDish } from "../pages/NewDish";
 import { EditDish } from "../pages/EditDish";
 import { Orders } from "../pages/Orders";
 import { NewOrder } from "../pages/NewOrder";
+import { OrderDetails } from "../pages/OrderDetails";
+import { Favorites } from "../pages/Favorites";
 
 export function AppRoutes() {
   return (
@@ -16,6 +18,8 @@ export function AppRoutes() {
       <Route path="/edit/:id" element={<EditDish />} />
       <Route path="/newOrder" element={<NewOrder />} />
       <Route path="/orders" element={<Orders />} />
+      <Route path="/orders/:id" element={<OrderDetails />} />
+      <Route path="/favorites" element={<Favorites />} />
     </Routes>
   );
 };

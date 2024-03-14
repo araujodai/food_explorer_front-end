@@ -22,6 +22,7 @@ export default createGlobalStyle`
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
     font-family: "Roboto", sans-serif;
     font-size: 1.6rem;
+    overflow: hidden;
 
     -webkit-font-smoothing: antialiased;
 

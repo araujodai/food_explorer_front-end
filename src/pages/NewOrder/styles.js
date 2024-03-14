@@ -45,60 +45,68 @@ export const ContentWrapper = styled.div`
   grid-template-areas: 
   "main"
   "footer";
-  overflow: overlay;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   > main {
     grid-area: main;
     padding: 3.4rem 2rem;
 
-    .orderDetails {
-      position: static;
-      animation: ${slideInLeft} 0.5s forwards;
+    > section {
+      display: grid;
+      grid-template-rows: min-content auto min-content min-content;
 
       h1 {
         font: 500 3.2rem/140% "Poppins", sans-serif;
         margin-bottom: 2.7rem;
       }
 
-      > span {
-        display: block;
-        margin: 3.2rem 0 4.7rem 0;
-        font: 500 2rem/160% "Poppins", sans-serif;
-      }
-
-      > button:last-child {
-        width: 21rem;
-        margin: 0 0 0 auto;
-      }
-
       &.hide {
         display: none;
       }
-    }
 
-    .paymentWrapper {
-      display: none;
+      &:first-of-type {
+        animation: ${slideInLeft} 0.5s forwards;
+        height: 100%;
 
-      &.show {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        width: 100%;
+        > div > span {
+          display: block;
+          margin: 3.2rem 0 4.7rem 0;
+          font: 500 2rem/160% "Poppins", sans-serif;
+        }
+
+        > button {
+          width: 21rem;
+          margin: 0 0 0 auto;
+          height: auto;
+        }
+      }
+
+      &:last-of-type {
         animation: ${slideInRight} 0.5s forwards;
+
+        > button {
+          position: fixed;
+          right: 0;
+          top: 12px;
+        }
 
         .qrcode {
           text-align: center;
-          padding-block: 3.1rem;
+
+          &.animate {
+            animation: ${slideInLeft} 0.5s forwards;
+          }
 
           img {
-            /* height: 179.8px;
-            width: 179.8px; */
-            width: clamp(179px, 100%, 250px);
+            width: 60%;
             height: auto;
-            object-fit: cover;
+          }
+
+          button {
+            margin-top: 32px;
           }
         }
-
       }
     }
 
@@ -107,29 +115,30 @@ export const ContentWrapper = styled.div`
       grid-template-columns: 1fr 1fr;
       grid-column-gap: 5%;
 
-      .orderDetails {
+      > section {
         h1 {
-          display: block;
-          margin-bottom: 3.2rem;
-        }
-      }
-
-      .paymentWrapper {
-        display: initial;
-
-        > button:first-of-type {
-          display: none;
+          margin-bottom: 3.2rem ;
         }
 
-        .qrcode {
-          padding-block: 4.7rem;
-          text-align: center;
-          
-          /* padding: clamp(20px, 5vw, 50px) clamp(35px, 10vw, 50px); */
+        &.hide {
+          display: initial;
+        }
 
-          img {
-            width: 250px;
-            height: 250px;
+        &:first-of-type {
+          animation: none;
+
+          > button {
+            display: none;
+          }
+        }
+
+        &:last-of-type {
+          > button {
+            display: none;
+          }
+
+          .qrcode > img {
+            width: 50%;
           }
         }
       }
@@ -142,8 +151,6 @@ export const ContentWrapper = styled.div`
 `;
 
 export const Form = styled.form`
-  padding: 5.7rem 2.6rem;
-
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 1fr 1fr;
@@ -158,5 +165,9 @@ export const Form = styled.form`
   .finalize {
     grid-row: 3;
     grid-column: 1 / span 2;
+  }
+
+  &.animate {
+    animation: ${slideInRight} 0.5s forwards;
   }
 `;

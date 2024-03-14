@@ -1,17 +1,17 @@
-import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { MdKeyboardArrowLeft } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
 
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { SimpleCard } from "../../components/SimpleCard";
-import { PaymentSection } from "../../components/PaymentSection";
+import { PaymentSelection } from "../../components/PaymentSelection";
 import qrCodeImage from "../../assets/qrcode.png";
 import { Footer } from "../../components/Footer";
 
+import { api } from "../../services/api";
 import { useCart } from "../../hooks/order";
 import { notify } from "../../components/Notification";
 
@@ -21,16 +21,19 @@ export function NewOrder() {
   const { cart, handleRemoveFromCart, handleEmptyCart } = useCart();
   const [ amount, setAmount ] = useState(0);
   const [ paymentMethod, setPaymentMethod ] = useState("pix");
-  const [showPaymentSection, setShowPaymentSection] = useState(false);
+  const [ showPaymentSection, setShowPaymentSection ] = useState(false);
+  const [ isAnimate, setIsAnimate ] = useState(false);
 
   const navigate = useNavigate();
 
   function handlePaymentMethod(event) {
     setPaymentMethod(event.target.value);
-  }
+    setIsAnimate(true);
+  };
 
   function handleSelectPaymentMethod() {
     setShowPaymentSection(prevState => !prevState)
+    setIsAnimate(false);
   };
 
   async function handleNewOrder() {
@@ -57,7 +60,7 @@ export function NewOrder() {
   };
 
   useEffect(() => {
-    setAmount(cart.reduce((total, item) => total + item.price, 0));
+    setAmount(cart.reduce((total, item) => total + item.price * item.quantity, 0));
   }, [cart]);
 
   return (
@@ -66,9 +69,10 @@ export function NewOrder() {
 
       <ContentWrapper>
         <main className="contentMaxWidthWrapper">
-          <section className={`orderDetails ${showPaymentSection ? "hide" : ""}`}> 
+          <section className={showPaymentSection ? "hide" : ""}>
             <h1>Meu pedido</h1>
 
+            <div>
               { cart && 
                 cart.map(item => (
                   <SimpleCard 
@@ -80,64 +84,67 @@ export function NewOrder() {
                 ))
               }
 
-            <span>{`Total: R$ ${amount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}</span>
+              <span>{`Total: R$ ${amount.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`}</span>
+            </div>
 
-            <Button title="Avançar" onClick={handleSelectPaymentMethod}/>
+            <Button 
+              title="Avançar" 
+              onClick={handleSelectPaymentMethod}
+              className="showPaymentMethodButton"
+            />
           </section>
 
-          <div className={`paymentWrapper ${showPaymentSection ? "show" : ""}`}>
+          <section className={!showPaymentSection ? "hide" : ""}>
             <Button 
               variant="secondary" 
-              title="voltar" 
-              icon={MdKeyboardArrowLeft} 
+              icon={FaRegEdit}
               onClick={handleSelectPaymentMethod} 
             />
 
-            <PaymentSection onClick={handlePaymentMethod}>
-                { paymentMethod === "pix" &&
-                  <div className="qrcode">
-                    <img src={qrCodeImage} alt="QR Code para pagamento PIX." />
-                  </div>
-                }
+            <h1>Pagamento</h1>
 
-                { paymentMethod === "cart" &&
-                  <Form>
-                    <Input 
-                      label="Número do Cartão"
-                      placeholder="0000 0000 0000 0000"
-                      name="cardNumber"
-                      type="number"
-                    />
+            <PaymentSelection onClick={handlePaymentMethod}>
+              { paymentMethod === "pix" ? (
+                <div className={`qrcode ${isAnimate ? "animate" : ""}`}>
+                  <img src={qrCodeImage} alt="QR Code para pagamento PIX." />
 
-                    <Input 
-                      label="Validade"
-                      placeholder="MM/AA"
-                      name="cartExpiration"
-                      type="number"
-                    />
+                  <Button 
+                    title="Fechar pedido"
+                    onClick={handleNewOrder}
+                    className="pixButton"
+                  />
+                </div>
+              ) : (
+                <Form className={isAnimate ? "animate" : ""}>
+                  <Input 
+                    label="Número do Cartão"
+                    placeholder="0000 0000 0000 0000"
+                    name="cardNumber"
+                    type="number"
+                  />
 
-                    <Input 
-                      label="CVV"
-                      placeholder="000"
-                      name="cartVerificationCode"
-                      type="number"
-                    />
+                  <Input 
+                    label="Validade"
+                    placeholder="MM/AA"
+                    name="cartExpiration"
+                    type="number"
+                  />
 
-                    <Button 
-                      title="Finalizar pagamento"
-                      className="finalize"
-                    />
-                  </Form>
-                }
-            </PaymentSection>
+                  <Input 
+                    label="CVV"
+                    placeholder="000"
+                    name="cartVerificationCode"
+                    type="number"
+                  />
 
-            { paymentMethod === "pix" &&
-              <Button 
-                title="Fechar pedido"
-                onClick={handleNewOrder}
-              />
-            }
-          </div>
+                  <Button 
+                    title="Finalizar pagamento"
+                    className="finalize"
+                  />
+                </Form>
+              )}
+            </PaymentSelection>
+          </section>
         </main>
         <Footer />
       </ContentWrapper>

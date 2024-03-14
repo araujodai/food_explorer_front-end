@@ -35,6 +35,12 @@ export const Container = styled.div`
       &::placeholder {
         color: ${({ theme }) => theme.COLORS.LIGHT_500};
       }
+
+      &[type="number"]::-webkit-inner-spin-button, 
+      [type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
     }
   }
 `;

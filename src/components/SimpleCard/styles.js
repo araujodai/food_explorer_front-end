@@ -7,7 +7,7 @@ export const Container = styled.div`
 
   align-items: center;
   grid-column-gap: 1rem;
-  margin-bottom: 1.6rem;
+  padding-block: 1.6rem;
 
   > img {
     width: 10rem;

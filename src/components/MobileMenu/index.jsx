@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
@@ -8,9 +8,12 @@ import { Button } from "../Button";
 import { SearchBar } from "../SearchBar";
 import { Footer } from "../Footer";
 
+import { useAuth } from "../../hooks/auth";
+
 import { Container, NavWrapper } from "./styles";
 
-export function MobileMenu({ isAdmin = false, tabs }) {
+export function MobileMenu({ tabs }) {
+  const { signOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -30,6 +33,11 @@ export function MobileMenu({ isAdmin = false, tabs }) {
         setIsOpen(prevState => !prevState);
       };
     };
+  };
+
+  function handleSignOut() {
+    navigate("/");
+    signOut();
   };
 
   return (
@@ -58,27 +66,24 @@ export function MobileMenu({ isAdmin = false, tabs }) {
           </header>
 
           <NavWrapper>
-
             <SearchBar 
               onKeyPress={handleSearchResults}
             />
 
             <ul>
-              {
-                tabs.filter(tab => tab.isAdmin == isAdmin)
+              {tabs
+                .filter(tab => tab.name !== "Pedidos")
                 .map(tab => (
                   <li key={tab.name}>
-                    <a href={tab.value}>{tab.name}</a>
+                    <Link to={tab.value}>{tab.name}</Link>
                   </li>
-                ))
-              }
+              ))}
 
-              <li>
-                <a href="#">Sair</a>
+              <li onClick={handleSignOut}>
+                <span>Sair</span>
               </li>
             </ul>
           </NavWrapper>
-
           <Footer />
         </div>
       }

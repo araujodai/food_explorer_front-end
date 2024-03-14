@@ -15,6 +15,8 @@ import { Textarea } from "../../components/Textarea";
 import { Footer } from "../../components/Footer";
 import { notify } from "../../components/Notification";
 
+import { AlertDialog } from "../../components/AlertDialog";
+
 import { Container, ContentWrapper, Form, IngredientGroup } from "./styles";
 
 export function EditDish() {
@@ -27,6 +29,8 @@ export function EditDish() {
 
   const [ price, setPrice ] = useState(0);
   const [ description, setDescription ] = useState("");
+
+  const [isAlertDialogVisible, setIsAlertDialogVisible] = useState(false);
 
   const params = useParams();
   const navigate = useNavigate();
@@ -75,24 +79,28 @@ export function EditDish() {
   };
 
   async function handleDeleteMenuItem() {
-    const confirm = window.confirm("Você está prestes a remover esse item e essa ação não pode ser desfeita, deseja prosseguir?");
-
-    if (confirm) {
-      try {
-        await api.delete(`menu/${params.id}`);
+    try {
+      await api.delete(`menu/${params.id}`);
   
-        notify.success("Item removido com sucesso.");
-        navigate("/");
+      notify.success("Item removido com sucesso.");
+      navigate("/");
         
-      } catch (error) {
-        if (error.response) {
-          notify.error(error.response.data.message);
+    } catch (error) {
+      if (error.response) {
+        notify.error(error.response.data.message);
   
-        } else {
-          notify.error("Não foi possível remover esse item, tente novamente.");
-        };
+      } else {
+        notify.error("Não foi possível remover esse item, tente novamente.");
       };
     };
+  };
+
+  function handleDeleteConfirmation(isConfirmed) {
+    if(isConfirmed) {
+      handleDeleteMenuItem();
+    } 
+
+    setIsAlertDialogVisible(false);
   };
 
   useEffect(() => {
@@ -205,17 +213,31 @@ export function EditDish() {
               <Button 
                 title="Excluir prato"
                 className="delete"
-                onClick={handleDeleteMenuItem}
+                onClick={() => setIsAlertDialogVisible(true)}
               />
-
+                
               <Button 
                 title="Salvar alterações"
                 className="light"
                 onClick={handleUpdateMenuItem}
               />
-          </div>
-
+            </div>
           </Form>
+
+          <AlertDialog 
+            title="Excluir prato?"
+            description="Essa ação não pode ser desfeita, ao concordar o prato será removido permanentemente do menú."
+            isVisible={isAlertDialogVisible}
+            onClick={handleDeleteConfirmation}
+          />
+
+          {/* {isAlertDialogVisible && 
+            <AlertDialog 
+              title="Excluir prato?"
+              description="Essa ação não pode ser desfeita, ao concordar o prato será removido permanentemente do menú."
+              onClick={handleDeleteConfirmation}
+            />
+          } */}
         </main>
 
         <Footer />

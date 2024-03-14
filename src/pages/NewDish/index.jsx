@@ -12,6 +12,7 @@ import { IngredientTag } from "../../components/IngredientTag";
 import { Textarea } from "../../components/Textarea";
 import { Footer } from "../../components/Footer";
 import { notify } from "../../components/Notification";
+import { Loading } from "../../components/Loading";
 
 import { api } from "../../services/api";
 
@@ -27,6 +28,8 @@ export function NewDish() {
 
   const [ price, setPrice ] = useState(0);
   const [ description, setDescription ] = useState("");
+
+  const [ isLoading, setIsLoading ] = useState(false);
 
   const navigate = useNavigate();
 
@@ -52,6 +55,8 @@ export function NewDish() {
       return notify.error("Existe um ingrediente pendente, adicione para continuar");
     };
 
+    setIsLoading(true);
+
     try {
       const menuItem = new FormData();
   
@@ -63,11 +68,14 @@ export function NewDish() {
       menuItem.append("description", description);
   
       await api.post("/menu", menuItem);
+      setIsLoading(false);
   
       notify.success("Item criado com sucesso!");
       navigate(-1);
 
     } catch (error) {
+      setIsLoading(false);
+
       if (error.response) {
         notify.error(error.response.data.message);
 
@@ -162,6 +170,8 @@ export function NewDish() {
 
           </Form>
         </main>
+
+        <Loading isVisible={isLoading} />
 
         <Footer />
       </ContentWrapper>

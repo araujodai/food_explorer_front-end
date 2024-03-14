@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
 
 import { GoDotFill } from "react-icons/go";
 
@@ -14,13 +14,13 @@ export const categories = [
 ];
 
 export const status = [
-  { label: "Pendente", value: "pending" },
-  { label: "Preparando", value: "preparing" },
-  { label: "Entregue", value: "delivered" },
-  { label: "Cancelado", value: "canceled" },
+  { label: "Pendente", value: "pending", description: "Aguardando pagamento no caixa." },
+  { label: "Preparando", value: "preparing", description: "Pagamento aprovado!" },
+  { label: "Entregue", value: "delivered", description: "Pedido entregue!" },
+  { label: "Cancelado", value: "canceled", description: "Pedido cancelado." },
 ];
 
-export function SelectCustom({ options, onChange, value, icon: Icon, className }) {
+export function SelectCustom({ options, onChange, value, icon: Icon, disabled = false }) {
   const [ selectValue, setSelectValue ] = useState(null);
 
   function handleCategoryChange(selectedOption) {
@@ -35,19 +35,32 @@ export function SelectCustom({ options, onChange, value, icon: Icon, className }
   }, [value]);
 
   return (
-    <Container>
-      <Select
-        options={options}
-        onChange={handleCategoryChange}
-        isSearchable={false}
-        placeholder="Selecione"
-        styles={customStyles(Icon)}
-        value={selectValue}
-      />
+    <Container disabled={disabled}>
 
-      { Icon && 
-        <GoDotFill className={className} size={16}/>
-      }
+      { disabled ? (
+        <span>
+          <GoDotFill className={value} />
+          {selectValue?.label}
+        </span>
+      ) : (
+        <Select
+          options={options}
+          onChange={handleCategoryChange}
+          isSearchable={false}
+          placeholder="Selecione"
+          styles={customStyles(Icon)}
+          value={selectValue}
+          components={{
+            SingleValue: ({ children, ...props }) => (
+              <components.SingleValue {...props}>
+                {Icon && <GoDotFill className={value} size={16} />}
+                {children}
+              </components.SingleValue>
+            ),
+          }}
+        />
+      )}
+
     </Container>
   );
 };

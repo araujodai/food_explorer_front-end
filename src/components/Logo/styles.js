@@ -7,6 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   gap: 8px;
   margin: 0 auto;
+  white-space: nowrap;
 
   > div {
     display: flex;

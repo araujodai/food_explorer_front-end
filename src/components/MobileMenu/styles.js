@@ -44,7 +44,7 @@ export const NavWrapper = styled.div`
       padding: 1rem;
       border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
 
-      a {
+      a, span {
         font: 300 2.4rem/140% "Poppins", sans-serif;
         color: ${({ theme }) => theme.COLORS.LIGHT_300};
       }

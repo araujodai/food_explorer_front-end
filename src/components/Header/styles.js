@@ -8,8 +8,6 @@ export const Container = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* border: 1px solid green; */
-    
 
     margin-top: 3.2rem;
 
@@ -34,18 +32,6 @@ export const Container = styled.header`
       }
     }
 
-    .searchBar {
-      position: relative;
-      
-    }
-
-    .searchResultList {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      
-    }
-
     @media(min-width: 1024px) {
       margin: 0;
       
@@ -53,12 +39,6 @@ export const Container = styled.header`
         display: none;
       }
     }
-
-    /* @media (min-width: 1180px) {
-      
-      margin: 0 auto;
-      width: 1120px;
-    } */
   }
 
   @media (min-width: 720px) {
@@ -69,10 +49,6 @@ export const Container = styled.header`
     padding-inline: 4rem;
   }
 
-  /* @media (min-width: 1180px) {
-    padding-inline: 0;
-  } */
-
   @media (min-width: 1400px) {
     padding-inline: 12.3rem;
   }
@@ -80,16 +56,49 @@ export const Container = styled.header`
 
 export const DesktopMenu = styled.div`
   display: none;
-
+  
   @media(min-width: 1024px) {
     display: flex;
     align-items: center;
     flex: content;
     gap: 3.2rem;
     margin-left: 3.2rem;
+    justify-content: end;
 
-    > button:nth-child(2) {
-      max-width: 21.6rem;
+    /* > :first-child {
+      max-width: 40rem;
+    } */
+
+    > ul {
+      display: flex;
+      gap: 3.2rem;
+      align-items: center;
+
+      li {
+        white-space: nowrap;
+
+        a {
+          color: ${({ theme }) => theme.COLORS.LIGHT_300};
+        }
+
+        button {
+          width: 18rem;
+
+          @media(min-width: 1180px) {
+            width: 21.6rem;
+          }
+        }
+      }
     }
-  }
+
+    }
+
+    /* > :nth-child(3) {
+      max-width: 18rem;
+
+      @media(min-width: 1180px) {
+        max-width: 21.6rem;
+      }
+    } */
+  /* } */
 `;

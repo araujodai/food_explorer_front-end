@@ -16,5 +16,5 @@ export const Container = styled.div`
   &:focus-within {
     border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
     transition: border 0.3s ease;
-  } 
+  }
 `;
