@@ -23,7 +23,6 @@ const slideInLeft = keyframes`
 `;
 
 export const Container = styled.div`
-  width: 100%;
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -50,7 +49,8 @@ export const ContentWrapper = styled.div`
 
   > main {
     grid-area: main;
-    padding: 3.4rem 2rem;
+    justify-self: center;
+    margin-top: 3.4rem;
 
     > section {
       display: grid;
@@ -125,9 +125,6 @@ export const ContentWrapper = styled.div`
 
         &:last-of-type > button {
           display: none;
-          /* > button {
-            display: none;
-          } */
         }
       }
     }
@@ -135,5 +132,6 @@ export const ContentWrapper = styled.div`
 
   > footer {
     grid-area: footer;
+    margin-top: 3.4rem;
   }
 `;

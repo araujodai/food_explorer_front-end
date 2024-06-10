@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
 
 import { Logo } from "../../components/Logo";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { notify } from "../../components/Notification";
+import { Loading } from "../../components/Loading";
+
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 import { Container, Form } from "./styles";
 
@@ -13,6 +15,8 @@ export function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [ isLoading, setIsLoading ] = useState(false);
 
   const navigate = useNavigate();
 
@@ -27,6 +31,8 @@ export function SignUp() {
       return notify.error("Crie uma senha com o mínimo de 6 caracteres.");
     };
 
+    setIsLoading(true);
+
     api.post("/users", { name, email, password })
       .then(() => {
         notify.success("Usuário cadastrado com sucesso.");
@@ -40,6 +46,9 @@ export function SignUp() {
           notify.error("Não foi possível cadastrar este usuário.");
         };
       })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   function handleGoToSignIn() {
@@ -91,6 +100,8 @@ export function SignUp() {
           onClick={handleGoToSignIn}
         />
       </Form>
+
+      <Loading isVisible={isLoading} />
 
     </Container>
   );

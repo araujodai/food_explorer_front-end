@@ -1,23 +1,21 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-
-import { api } from "../../services/api";
-import { status } from "../../components/SelectCustom";
+import { useParams } from "react-router-dom";
 
 import { MdOutlineWatchLater, MdCheckCircleOutline, MdNoMeals } from "react-icons/md";
 import { PiForkKnife } from "react-icons/pi";
 
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import imagePlaceholder from "../../assets/menu_item_image_placeholder.png";
 
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { SimpleCard } from "../../components/SimpleCard";
 import { PaymentSelection } from "../../components/PaymentSelection";
+import { status } from "../../components/SelectCustom";
 import { Footer } from "../../components/Footer";
-
 import { notify } from "../../components/Notification";
 import { Loading } from "../../components/Loading";
+
+import { api } from "../../services/api";
 
 import { Container, ContentWrapper } from "./styles";
 
@@ -26,7 +24,6 @@ export function OrderDetails() {
   const [ showPaymentSection, setShowPaymentSection ] = useState(false);
   const [ isLoading, setIsLoading ] = useState(false);
 
-  const navigate = useNavigate();
   const params = useParams();
 
   function handleSelectPaymentMethod() {
@@ -61,7 +58,6 @@ export function OrderDetails() {
         const response = await api.get(`/orders/${params.id}`)
         setData(response.data);
         setIsLoading(false);
-        // console.log(response.data);
 
       } catch (error) {
         if (error.response) {
@@ -81,8 +77,7 @@ export function OrderDetails() {
       <Header />
 
       <ContentWrapper>
-        <main className="contentMaxWidthWrapper">
-          {/* {isLoading && <Loading /> } */}
+        <main>
           <Loading isVisible={isLoading} />
 
           {data && (
@@ -100,7 +95,7 @@ export function OrderDetails() {
                     ))
                   }
 
-                  <span>Total: R$ {data.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+                  <span>Total: R$ {data.total_price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
                 </div>
 
                 <Button title="Status" onClick={handleSelectPaymentMethod}/>

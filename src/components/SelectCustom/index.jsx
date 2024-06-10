@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
 import Select, { components } from 'react-select';
-
 import { GoDotFill } from "react-icons/go";
 
 import { Container, customStyles } from "./styles";
@@ -21,18 +19,9 @@ export const status = [
 ];
 
 export function SelectCustom({ options, onChange, value, icon: Icon, disabled = false }) {
-  const [ selectValue, setSelectValue ] = useState(null);
-
   function handleCategoryChange(selectedOption) {
     onChange(selectedOption.value);
   };
-
-  useEffect(() => {
-    if (value) {
-      const selectedOption = options.find(option => option.value === value);
-      setSelectValue(selectedOption);
-    };
-  }, [value]);
 
   return (
     <Container disabled={disabled}>
@@ -40,7 +29,7 @@ export function SelectCustom({ options, onChange, value, icon: Icon, disabled = 
       { disabled ? (
         <span>
           <GoDotFill className={value} />
-          {selectValue?.label}
+          {options.find(option => option.value === value)?.label}
         </span>
       ) : (
         <Select
@@ -49,7 +38,7 @@ export function SelectCustom({ options, onChange, value, icon: Icon, disabled = 
           isSearchable={false}
           placeholder="Selecione"
           styles={customStyles(Icon)}
-          value={selectValue}
+          value={options.find(option => option.value === value)}
           components={{
             SingleValue: ({ children, ...props }) => (
               <components.SingleValue {...props}>

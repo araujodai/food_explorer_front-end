@@ -1,23 +1,24 @@
 import { useState, useEffect } from "react";
 
-import { useAuth } from "../../hooks/auth";
-import { useSearch } from "../../hooks/search";
-import { api } from "../../services/api";
-
 import { MdNoMealsOuline } from "react-icons/md";
 import bannerImageMobile from "../../assets/macaroons_and_fruits_banner_image.png";
 import bannerImageDesktop from "../../assets/macaroons_and_fruits_banner_image_desktop.png";
 
 import { Header } from "../../components/Header";
+import { categories } from "../../components/SelectCustom";
 import { Section } from "../../components/Section";
+import { CarouselCustom } from "../../components/CarouselCustom";
 import { Card } from "../../components/Card";
 import { Footer } from "../../components/Footer";
-import { CarouselCustom } from "../../components/CarouselCustom";
-import { categories } from "../../components/SelectCustom";
 import { notify } from "../../components/Notification";
 import { Loading } from "../../components/Loading";
+import { EmptyState } from "../../components/EmptyState";
 
-import { Container, BannerWrapper } from "./styles";
+import { useAuth } from "../../hooks/auth";
+import { useSearch } from "../../hooks/search";
+import { api } from "../../services/api";
+
+import { Container, BannerWrapper, ContentWrapper } from "./styles";
 
 export function Home() {
   const [ menu, setMenu ] = useState([]);
@@ -29,28 +30,24 @@ export function Home() {
   const { search, setNoResults, noResults } = useSearch();
 
   useEffect(() => {
-    setIsLoading(true);
-
     async function fetchMenuItems() {
+      setIsLoading(true);
+
       try {
         const response = await api.get(`/menu?search=${search}`);
         setMenu(response.data);
         setNoResults(response.data.length === 0);
-        
-        //linha teste
-        // setTimeout(() => {
-        //   setIsLoading(false);
-        // }, 3000);
-        setIsLoading(false);
 
       } catch (error) {
-        setIsLoading(false);
         if (error.response) {
           notify.error(error.response.data.message);
 
         } else {
           notify.error("Erro ao carregar o menú, tente novamente mais tarde.");
         };
+
+      } finally {
+        setIsLoading(false);
       };
     };
 
@@ -61,11 +58,8 @@ export function Home() {
     <Container>
       <Header />
 
-      {/* {isLoading && <Loading />} */}
-
-      <div className="contentScrollWrapper">
-        <main className="contentMaxWidthWrapper">
-
+      <ContentWrapper>
+        <main >
           <BannerWrapper>
             <img src={bannerImageMobile} alt="Imagem macaroons e frutas" className="mobile"/>
             <img src={bannerImageDesktop} alt="Imagem macaroons e frutas" className="desktop"/>
@@ -76,11 +70,10 @@ export function Home() {
             </div>
           </BannerWrapper>
 
-          {/* {isLoading && <Loading />} */}
           <Loading isVisible={isLoading} />
 
-          {
-            categories
+          <div className="teste">
+          { categories
             .filter(category => menu.some(menuItem => menuItem.category === category.value))
             .map(category => (
               <Section
@@ -88,32 +81,33 @@ export function Home() {
                 title={category.label}
               >
                 <CarouselCustom>
-                  {
-                    menu.filter(menuItem => menuItem.category === category.value)
-                      .map(menuItem => (
-                        <Card 
+                  { menu.filter(menuItem => menuItem.category === category.value)
+                    .map(menuItem => (
+                      <Card 
                         key={String(menuItem.id)}
                         data={menuItem}
                         isAdmin={isAdmin}
                       />
-                      ))
+                    ))
                   }
                 </CarouselCustom>
               </Section>
             ))
           }
+          </div>
 
-          {
-            noResults &&
-            <div className="empty">
-              <MdNoMealsOuline />
-              <p>Nenhum item encontrado.</p>
-            </div>
+          { noResults &&
+            <EmptyState 
+              message={isAdmin ? (search ? false : "Não existem pratos cadastrados.") : false}
+              actionRoute={ isAdmin ? (search ? false : "/new") : false }
+              actionLabel="Criar prato"
+              icon={MdNoMealsOuline}
+              className={ search || !isAdmin ? "noAction" : "" }
+            />
           }
-
         </main>
         <Footer />
-      </div>
+      </ContentWrapper>
     </Container>
   )
 };

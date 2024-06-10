@@ -2,9 +2,6 @@ import styled from "styled-components";
 import theme from "../../styles/theme";
 
 export const Container = styled.div`
-  /* display: ${({ disabled }) => disabled && disabled === true ? 'inline-flex' : 'none'}; */
-  /* display: inline-flex; */
-
   > span {
     display: inline-flex;
     gap: 4px;
@@ -27,10 +24,6 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.LIGHT_500};
     }
   }
-
-  /* ${({ disabled }) => !disabled && `
-    display: initial;
-  `} */
 `;
 
 export const customStyles = (icon) => ({
@@ -38,7 +31,6 @@ export const customStyles = (icon) => ({
     ...provided,
     backgroundColor: theme.COLORS.DARK_800,
     minWidth: '165px',
-    // padding: icon ? "6px 6px 6px 24px" : "6px",
     padding: icon ? "6px 6px 6px 6px" : "6px",
     borderRadius: icon ? "5px" : "8px",
     borderColor: state.isFocused ? theme.COLORS.LIGHT_100 : "transparent",

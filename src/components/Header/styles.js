@@ -65,10 +65,6 @@ export const DesktopMenu = styled.div`
     margin-left: 3.2rem;
     justify-content: end;
 
-    /* > :first-child {
-      max-width: 40rem;
-    } */
-
     > ul {
       display: flex;
       gap: 3.2rem;
@@ -90,15 +86,5 @@ export const DesktopMenu = styled.div`
         }
       }
     }
-
-    }
-
-    /* > :nth-child(3) {
-      max-width: 18rem;
-
-      @media(min-width: 1180px) {
-        max-width: 21.6rem;
-      }
-    } */
-  /* } */
+  }
 `;

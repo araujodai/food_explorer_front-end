@@ -1,4 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const slideInRight = keyframes`
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
 
 export const Container = styled.div`
   padding: 2rem;
@@ -16,6 +27,7 @@ export const Container = styled.div`
 export const Form = styled.form`
   margin: 7.3rem 0 3.2rem;
   text-align: center;
+  animation: ${slideInRight} 0.5s forwards;
 
   > h2 {
     display: none;

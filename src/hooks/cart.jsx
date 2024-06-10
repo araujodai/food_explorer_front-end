@@ -3,30 +3,63 @@ import { createContext, useContext, useState, useEffect } from "react";
 const CartContext = createContext();
 
 function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
-  const [ cartItems, setCartItems ] = useState(0);
+  const [ cart, setCart ] = useState([]);
 
   function handleAddToCart({ data, quantity }) {
     const { id, image, name, price } = data;
-    const cartItem = { id, image, name, price, quantity };
-    setCart([...cart, cartItem]);
+
+    const repeatedItem = cart.find(item => item.id === id);
+
+    if (repeatedItem) {
+      const updatedQuantity = repeatedItem.quantity + quantity;
+
+      const updatedItem = { 
+        ...repeatedItem,
+        quantity: updatedQuantity 
+      };
+      
+      const updatedCart = cart.filter(item => item.id !== updatedItem.id);
+
+      setCart([...updatedCart, updatedItem]);
+      localStorage.setItem("@foodexplorer:cart", JSON.stringify([...updatedCart, updatedItem]));
+
+    } else {
+      const newItem = { id, image, name, price, quantity };
+
+      setCart([...cart, newItem]);
+      localStorage.setItem("@foodexplorer:cart", JSON.stringify([...cart, newItem]));
+    };
   };
 
   function handleRemoveFromCart(itemId) {
-    setCart(cart.filter((item) => item.id !== itemId));
+    const updatedCart = cart.filter(item => item.id !== itemId);
+
+    setCart(updatedCart);
+    localStorage.setItem("@foodexplorer:cart", JSON.stringify(updatedCart));
+  };
+
+  function handleEmptyCart() {
+    setCart([]);
+    localStorage.removeItem("@foodexplorer:cart");
   };
 
   useEffect(() => {
-    const amount = cart.reduce((total, item) => total + item.quantity, 0);
-    setCartItems(amount);
-  }, [cart]);
+    const hasItemsInCart = JSON.parse(localStorage.getItem("@foodexplorer:cart"));
+
+    if (hasItemsInCart) {
+      setCart(hasItemsInCart);
+
+    } else {
+      setCart([]);
+    };
+  }, []);
 
   return (
     <CartContext.Provider value={{ 
       cart,
-      cartItems,
       handleAddToCart,
-      handleRemoveFromCart
+      handleRemoveFromCart,
+      handleEmptyCart
     }}>
       {children}
     </CartContext.Provider>

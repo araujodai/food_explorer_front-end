@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  /* width: minmax(100%, 3rem); */
-
   .inputWrapper {
     border: .6px solid ${({ theme }) => theme.COLORS.LIGHT_600};
     border-radius: 8px 8px 0px 0px;

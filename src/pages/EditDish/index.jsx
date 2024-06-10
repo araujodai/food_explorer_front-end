@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { api } from "../../services/api";
-
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
 import { Header } from "../../components/Header";
@@ -14,8 +12,10 @@ import { IngredientTag } from "../../components/IngredientTag";
 import { Textarea } from "../../components/Textarea";
 import { Footer } from "../../components/Footer";
 import { notify } from "../../components/Notification";
-
+import { Loading } from "../../components/Loading";
 import { AlertDialog } from "../../components/AlertDialog";
+
+import { api } from "../../services/api";
 
 import { Container, ContentWrapper, Form, IngredientGroup } from "./styles";
 
@@ -31,6 +31,7 @@ export function EditDish() {
   const [ description, setDescription ] = useState("");
 
   const [isAlertDialogVisible, setIsAlertDialogVisible] = useState(false);
+  const [ isLoading, setIsLoading ] = useState(true);
 
   const params = useParams();
   const navigate = useNavigate();
@@ -122,6 +123,9 @@ export function EditDish() {
         } else {
           notify.error("Não foi possível carregar as informações deste item, tente novamente.");
         }
+
+      } finally {
+        setIsLoading(false);
       };
     };
     fetchMenuItem();
@@ -131,8 +135,10 @@ export function EditDish() {
     <Container>
       <Header />
 
+      <Loading isVisible={isLoading} />
+
       <ContentWrapper>
-        <main className="contentMaxWidthWrapper">
+        <main>
           <Button 
             variant="secondary" 
             title="voltar" 
@@ -172,8 +178,7 @@ export function EditDish() {
               <strong>Ingredientes</strong>
               
               <div className="tagsWrapper">
-                {
-                  ingredients.map((ingredient, index) => (
+                { ingredients.map((ingredient, index) => (
                     <IngredientTag 
                       key={String(index)}
                       value={ingredient}
@@ -230,14 +235,6 @@ export function EditDish() {
             isVisible={isAlertDialogVisible}
             onClick={handleDeleteConfirmation}
           />
-
-          {/* {isAlertDialogVisible && 
-            <AlertDialog 
-              title="Excluir prato?"
-              description="Essa ação não pode ser desfeita, ao concordar o prato será removido permanentemente do menú."
-              onClick={handleDeleteConfirmation}
-            />
-          } */}
         </main>
 
         <Footer />

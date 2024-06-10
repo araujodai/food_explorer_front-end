@@ -9,6 +9,7 @@ import { NewOrder } from "../pages/NewOrder";
 import { OrderDetails } from "../pages/OrderDetails";
 import { Favorites } from "../pages/Favorites";
 
+
 export function AppRoutes() {
   return (
     <Routes>

@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 const slideInRight = keyframes`
   from {
-    transform: translateX(100%);
+    transform: translateX(80%);
     opacity: 0;
   }
   to {
@@ -13,7 +13,7 @@ const slideInRight = keyframes`
 
 const slideInLeft = keyframes`
   from {
-    transform: translateX(-100%);
+    transform: translateX(-80%);
     opacity: 0;
   }
   to {
@@ -23,7 +23,6 @@ const slideInLeft = keyframes`
 `;
 
 export const Container = styled.div`
-  width: 100%;
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -50,7 +49,8 @@ export const ContentWrapper = styled.div`
 
   > main {
     grid-area: main;
-    padding: 3.4rem 2rem;
+    margin-top: 3.4rem;
+    justify-self: center;
 
     > section {
       display: grid;
@@ -147,6 +147,7 @@ export const ContentWrapper = styled.div`
 
   > footer {
     grid-area: footer;
+    margin-top: 3.4rem;
   }
 `;
 

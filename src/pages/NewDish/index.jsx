@@ -71,7 +71,7 @@ export function NewDish() {
       setIsLoading(false);
   
       notify.success("Item criado com sucesso!");
-      navigate(-1);
+      navigate("/");
 
     } catch (error) {
       setIsLoading(false);
@@ -90,7 +90,7 @@ export function NewDish() {
       <Header />
 
       <ContentWrapper>
-        <main className="contentMaxWidthWrapper">
+        <main>
           <Button 
             variant="secondary" 
             title="voltar" 
@@ -128,8 +128,7 @@ export function NewDish() {
               <strong>Ingredientes</strong>
               
               <div className="tagsWrapper">
-                {
-                  ingredients.map((ingredient, index) => (
+                { ingredients.map((ingredient, index) => (
                     <IngredientTag 
                       key={String(index)}
                       value={ingredient}
@@ -167,7 +166,6 @@ export function NewDish() {
               className="light"
               onClick={handleNewMenuItem}
             />
-
           </Form>
         </main>
 

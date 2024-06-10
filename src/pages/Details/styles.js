@@ -28,7 +28,16 @@ export const ContentWrapper = styled.div`
 
   > main {
     grid-area: main;
-    padding: 1.6rem 3rem;
+    margin-top: 3.6rem;
+    justify-self: center;
+
+    @media (max-width: 719px) {
+      padding-inline: 3rem;
+    }
+
+    @media (min-width: 1024px) {
+      margin-top: 2.4rem;
+    }
   }
 
   > footer {
@@ -43,11 +52,11 @@ export const DishWrapper = styled.div`
   text-align: center;
 
   > img {
-      max-width: 26.4rem;
-      max-height: 26.4rem;
-      object-fit: cover;
-      margin-bottom: 1.6rem;
-      border-radius: 50%;
+    max-width: 26.4rem;
+    max-height: 26.4rem;
+    object-fit: cover;
+    margin-bottom: 1.6rem;
+    border-radius: 50%;
   }
 
   @media(min-width: 1024px) {
@@ -68,7 +77,6 @@ export const DishWrapper = styled.div`
 
 export const DishInfo = styled.div`
   width: min(100%, 68.7rem);
-  width: 100%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;

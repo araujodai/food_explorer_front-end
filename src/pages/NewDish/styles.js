@@ -25,14 +25,13 @@ export const ContentWrapper = styled.div`
 
   > main {
     grid-area: main;
-    
-    @media (max-width: 1024px) {
-      padding: 1rem 2.8rem;
-    }
+    margin-top: 1.6rem;
+    justify-self: center;
 
     @media(min-width: 1024px) {
+      margin-top: 4rem;
+
       > button {
-        margin-top: 4rem;
         font-size: 2.4rem;
 
         svg {
@@ -45,6 +44,7 @@ export const ContentWrapper = styled.div`
 
   > footer {
     grid-area: footer;
+    margin-top: 5rem;
   }
 `;
 
@@ -53,7 +53,6 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
-  padding-bottom: 5.3rem;
 
   > h1 {
     font: 500 3.2rem/140% "Poppins", sans-serif;

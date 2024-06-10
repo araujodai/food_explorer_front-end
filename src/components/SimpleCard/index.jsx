@@ -1,7 +1,7 @@
-import { Container } from "./styles";
+import imagePlaceholder from "../../assets/menu_item_image_placeholder.svg";
 import { api } from "../../services/api";
-import { useCart } from "../../hooks/order";
-import imagePlaceholder from "../../assets/menu_item_image_placeholder.png";
+
+import { Container } from "./styles";
 
 export function SimpleCard({ data, readOnly = false, title, onClick }) {
   const imageUrl = data && data.image ? `${api.defaults.baseURL}/files/${data.image}` : imagePlaceholder;
@@ -9,7 +9,6 @@ export function SimpleCard({ data, readOnly = false, title, onClick }) {
   return (
     <Container className={readOnly ? "readOnly" : ""}>
       <img 
-        // src={`${api.defaults.baseURL}/files/${data.image}`} 
         src={imageUrl}
         alt={`Imagem de ${data.name}`} 
       />

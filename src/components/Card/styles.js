@@ -39,9 +39,19 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.LIGHT_300};
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
 
     h2 {
       font: 500 1.4rem/2.4rem "Poppins", sans-serif;
+      white-space: nowrap;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    svg {
+      min-width: 2.2rem;
     }
   }
 

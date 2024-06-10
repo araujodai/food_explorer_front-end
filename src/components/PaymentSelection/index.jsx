@@ -25,7 +25,7 @@ export function PaymentSelection({ children, onClick, data }) {
           <input 
             type="radio" 
             name="paymentMethod" 
-            value="cart" 
+            value="card" 
             data-label="Crédito" 
             onClick={onClick}
             defaultChecked={data === "cart"}

@@ -2,13 +2,14 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { api } from "../services/api";
 import { notify } from "../components/Notification";
 
+
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
   const [ data, setData ] = useState({});
+  const [ isTokenExpired, setIsTokenExpired ] = useState(false);
 
   async function signIn({ email, password }) {
-
     try {
       const response = await api.post("/sessions", { email, password });
       const { user, token } = response.data;
@@ -27,8 +28,6 @@ function AuthProvider({ children }) {
         notify.error("Não foi possível realizar o login, tente novamente.");
       };
     };
-
-    
   };
 
   function signOut() {
@@ -36,13 +35,30 @@ function AuthProvider({ children }) {
     localStorage.removeItem("@foodexplorer:user");
 
     setData({});
+    setIsTokenExpired(false);
   };
+
+  useEffect(() => {
+    const interceptor = api.interceptors.response.use(
+      response => response,
+      error => {
+        if (error.response && error.response.status === 401) {
+          setIsTokenExpired(true);
+        }
+        return Promise.reject(error);
+      }
+    );
+  
+    return () => {
+      api.interceptors.response.eject(interceptor);
+    };
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("@foodexplorer:token");
     const user = localStorage.getItem("@foodexplorer:user");
 
-    if (token && user) {
+    if(token && user) {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       setData({
@@ -56,7 +72,8 @@ function AuthProvider({ children }) {
     <AuthContext.Provider value={{ 
       signIn, 
       signOut,
-      user: data.user,
+      user: data.user, 
+      isTokenExpired
     }}>
       {children}
     </AuthContext.Provider>

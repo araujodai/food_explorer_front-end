@@ -7,21 +7,13 @@ export const Container = styled.section`
   > h2 {
     font: 500 1.8rem/140% "Poppins", sans-serif;
     margin-bottom: 2.4rem;
-  }
 
-  > div {
-    overflow-y: overlay;
-  }
-
-  @media(min-width: 768px) {
-    margin: 0 0 4.7rem;
-  }
-
-  @media(min-width: 1024px) {
-    margin: 0 0 4.7rem;
-
-    > h2 {
+    @media(min-width: 1024px) {
       font-size: 3.2rem;
     }
+  }
+
+  @media(min-width: 720px) {
+    margin: 0 0 4.7rem;
   }
 `;

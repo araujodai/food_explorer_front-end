@@ -3,16 +3,14 @@ import { useNavigate, Link } from "react-router-dom";
 
 import { PiHeartStraightBold, PiHeartFill, PiPencilSimpleDuotone } from "react-icons/pi"; 
 import { RxCaretRight } from "react-icons/rx";
-import imagePlaceholder from "../../assets/menu_item_image_placeholder.png";
-
-import { api } from "../../services/api";
-// import { useCart } from "../../hooks/cart";
-
-import { useCart } from "../../hooks/order";
+import imagePlaceholder from "../../assets/menu_item_image_placeholder.svg";
 
 import { Button } from "../Button";
 import { Stepper } from "../Stepper";
 import { notify } from "../Notification"
+
+import { api } from "../../services/api";
+import { useCart } from "../../hooks/cart";
 
 import { Container } from "./styles";
 
@@ -100,7 +98,7 @@ export function Card({ isAdmin = false, data }) {
 
       <Link to={`/details/${data.id}`}>
         <h2>{data.name}</h2>
-        <RxCaretRight size={22} />
+        <RxCaretRight />
       </Link>
 
       <p className="description">
@@ -111,8 +109,7 @@ export function Card({ isAdmin = false, data }) {
         R$ {data.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
       </span>
 
-      {
-        !isAdmin &&
+      { !isAdmin &&
         <div className="quantityControl">
           <Stepper 
             quantity={quantity} 

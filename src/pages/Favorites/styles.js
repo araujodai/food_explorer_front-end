@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  /* width: 100vw; */
   height: 100vh;
   display: grid;
   grid-template-rows: min-content auto;
@@ -27,23 +26,30 @@ export const ContentWrapper = styled.div`
 
   > main {
     grid-area: main;
-    padding: 3.4rem 2rem;
+    justify-self: center;
+    margin-block: 3.4rem;
 
     h1 {
-      margin-bottom: 2.9rem;
+      font: 500 3.2rem/140% "Poppins", sans-serif;
+    }
+
+    .noContent {
+      position: relative;
+      left: 0;
+      top: 50%;
+      transform: translateY(-60%);
+    }
+
+    .favoritesWrapper {
+      margin-top: 2.9rem;
     }
 
     @media(min-width: 1024px) {
-      h1 {
-        margin-bottom: 3.2rem;
-      }
-
       > .favoritesWrapper {
         display: grid;
-        /* grid-template-columns: 1fr 1fr 1fr 1fr; */
         grid-template-columns: repeat(4, 25%);
         grid-row-gap: 3.2rem;
-        /* grid-column-gap: 2rem; */
+        margin-top: 3.2rem;
       }
     }
   }

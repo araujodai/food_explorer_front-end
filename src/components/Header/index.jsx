@@ -1,22 +1,21 @@
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import { useAuth } from "../../hooks/auth";
-// import { useCart } from "../../hooks/cart";
-import { useCart } from "../../hooks/order";
-
 import { PiReceiptBold, PiSignOutBold } from "react-icons/pi";
 
 import { MobileMenu } from "../MobileMenu";
 import { Logo } from "../Logo";
 import { SearchBar } from "../SearchBar";
 import { Button } from "../Button";
-
-import { Container, DesktopMenu } from "./styles";
 import { notify } from "../Notification";
 
+import { useAuth } from "../../hooks/auth";
+import { useCart } from "../../hooks/cart";
+
+import { Container, DesktopMenu } from "./styles";
+
 export function Header() {
-  const { user, signOut } = useAuth();
+  const { user, signOut, isTokenExpired } = useAuth();
   const isAdmin = user.is_admin ? true : false;
 
   const { cart } = useCart();
@@ -60,7 +59,15 @@ export function Header() {
   };
 
   useEffect(() => {
+    if (isTokenExpired) {
+      handleSignOut();
+    }
+  }, [isTokenExpired]);
+
+  useEffect(() => {
     setAmount(cart.reduce((total, item) => total + item.quantity, 0));
+
+    
 
   }, [cart]);
 

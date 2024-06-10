@@ -7,16 +7,18 @@ import { Footer } from "../../components/Footer";
 import { SelectCustom, status } from "../../components/SelectCustom";
 import { notify } from "../../components/Notification";
 import { Loading } from "../../components/Loading";
+import { EmptyState } from "../../components/EmptyState";
 
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 
-import { Container, ContentWrapper, OrderCard, Table } from "./styles";
+import { Container, ContentWrapper, OrderCard, TableWrapper } from "./styles";
 
 export function Orders() {
   const [ orders, setOrders ] = useState([]);
   const [ orderStatus, setOrderStatus ] = useState("");
-  const [ isLoading, setIsLoading ] = useState(false);
+  const [ isLoading, setIsLoading ] = useState(true);
+  const [ isEmpty, setIsEmpty ] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,18 +26,20 @@ export function Orders() {
   const isAdmin = user.is_admin ? true : false;
 
   async function handleStatusChange(selectedOption, orderId) {
-    const confirm = window.confirm("Deseja atualizar o status desse pedido?");
+    try {
+      setIsLoading(true);
 
-    if (confirm) {
-      try {
-        await api.put("/orders", {id: orderId, status: selectedOption});
-        notify.success("Pedido atualizado com sucesso.");
-        setOrderStatus(selectedOption)
+      await api.put("/orders", {id: orderId, status: selectedOption});
+      setOrderStatus(selectedOption);
+      
+      notify.success("Pedido atualizado com sucesso.");
 
-      } catch (error) {
-        notify.error("Não foi possível atualizar o pedido, tente novamente.");
-      };
-    };
+    } catch (error) {
+      notify.error("Não foi possível atualizar o pedido, tente novamente.");
+
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   function handleOrderDetails(orderId) {
@@ -43,17 +47,14 @@ export function Orders() {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-
     async function fetchOrders() {
       try {
         const response = await api.get("orders")
         setOrders(response.data)
 
-        // setTimeout(() => {
-        //   setIsLoading(false);
-        // }, 3000);
-        setIsLoading(false);
+        if (response.data.length === 0) {
+          setIsEmpty(true);
+        }
 
       } catch (error) {
         if (error.response) {
@@ -62,6 +63,8 @@ export function Orders() {
         } else {
           notify.error("Não foi possível carregar os pedidos, tente novamente.");
         };
+      } finally {
+        setIsLoading(false);
       };
     };
 
@@ -72,15 +75,13 @@ export function Orders() {
     <Container>
       <Header />
 
-      {/* {isLoading && <Loading />} */}
       <Loading isVisible={isLoading} />
 
       <ContentWrapper>
-        <main className="contentMaxWidthWrapper">
+        <main>
           <h1>Pedidos</h1>
 
-          {
-            orders &&
+          { orders && !isEmpty &&
             orders.map(order => (
               <OrderCard 
                 key={String(order.id)} 
@@ -91,8 +92,7 @@ export function Orders() {
                 
                 <span>{moment(order.created_at).subtract(3, 'hours').format('DD/MM [às] HH:mm')}</span>
                 <p>
-                  {
-                    order.items.map((item, index) => (
+                  { order.items.map((item, index) => (
                       <span key={index}>
                         {`${item.quantity}x ${item.menu_item_name}`}
                         {index < order.items.length - 1 ? ', ' : ''} 
@@ -113,19 +113,19 @@ export function Orders() {
             ))
           }
 
-          <div className='table-container'>
-            <Table>
-              <thead>
-                <tr>
-                  <th>Status</th>
-                  <th>Código</th>
-                  <th>Detalhamento</th>
-                  <th>Data e hora</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders &&
-                  orders.map(order => (
+          { orders && !isEmpty &&
+            <TableWrapper>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Código</th>
+                    <th>Detalhamento</th>
+                    <th>Data e hora</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map(order => (
                     <tr key={order.id}>
                       <td>
                         <SelectCustom 
@@ -135,6 +135,7 @@ export function Orders() {
                           id={order.id}
                           disabled={!isAdmin}
                           icon
+                          className="teste"
                         />
                       </td>
                       <td>
@@ -143,9 +144,9 @@ export function Orders() {
                         </span>
                       </td>
                       <td className="detailing">
-                        {order.items && (
+                        { order.items && (
                           <p>
-                            {order.items.map((item, index) => ( // depois de limpar banco trocar pra id
+                            {order.items.map((item, index) => (
                               <Fragment key={index}>
                                 {`${item.quantity}x ${item.menu_item_name}`}
                                 {index < order.items.length - 1 ? ', ' : ''}
@@ -157,9 +158,20 @@ export function Orders() {
                       <td>{moment(order.created_at).subtract(3, 'hours').format('DD/MM [às] HH:mm')}</td>
                     </tr>
                   ))}
-              </tbody>
-            </Table>
-          </div>
+                </tbody>
+              </table>
+            </TableWrapper>
+          }
+
+          { isEmpty &&
+            <EmptyState 
+              title="Nenhum pedido encontrado" 
+              message={ isAdmin ? "Ainda não existem pedidos para a loja" : "Você ainda não tem pedidos, adicione itens ao seu carrinho." } 
+              actionRoute={ isAdmin ? false : "/" }
+              actionLabel="Criar pedido"
+              className="noContent"
+            />
+          }
         </main>
 
         <Footer />

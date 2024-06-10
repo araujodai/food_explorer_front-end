@@ -13,7 +13,6 @@ export default createGlobalStyle`
     ::-webkit-scrollbar-thumb {
     border-radius: 0.8rem;
     background: transparent;
-    border: 1px solid red;
   }
   }
 
@@ -80,9 +79,12 @@ export default createGlobalStyle`
     list-style: none;
   }
 
-  .contentMaxWidthWrapper {
-    width: min(100%, 1120px);
-    margin: 0 auto;
+  main {
+    width: min(100%, 1200px);
+
+    @media (max-width: 719px) {
+      padding-inline: 2rem;
+    }
 
     @media (min-width: 720px) {
       padding-inline: 3rem;
@@ -90,10 +92,6 @@ export default createGlobalStyle`
 
     @media (min-width: 998px) {
       padding-inline: 4rem;
-    }
-
-    @media (min-width: 1180px) {
-      padding-inline: 0;
     }
   }
 `;

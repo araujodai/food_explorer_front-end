@@ -2,18 +2,18 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { FaRegEdit } from "react-icons/fa";
+import qrCodeImage from "../../assets/qrcode.png";
 
 import { Header } from "../../components/Header";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { SimpleCard } from "../../components/SimpleCard";
 import { PaymentSelection } from "../../components/PaymentSelection";
-import qrCodeImage from "../../assets/qrcode.png";
 import { Footer } from "../../components/Footer";
+import { notify } from "../../components/Notification";
 
 import { api } from "../../services/api";
-import { useCart } from "../../hooks/order";
-import { notify } from "../../components/Notification";
+import { useCart } from "../../hooks/cart";
 
 import { Container, ContentWrapper, Form } from "./styles";
 
@@ -31,7 +31,7 @@ export function NewOrder() {
     setIsAnimate(true);
   };
 
-  function handleSelectPaymentMethod() {
+  function handleSelectPaymentMethod(event) {
     setShowPaymentSection(prevState => !prevState)
     setIsAnimate(false);
   };
@@ -41,6 +41,7 @@ export function NewOrder() {
       const orderData = {
         amount: amount,
         cart_items: cart,
+        payment_method: paymentMethod,
       };
   
       await api.post("/orders", orderData);
@@ -58,6 +59,7 @@ export function NewOrder() {
       };
     };
   };
+  console.log(paymentMethod)
 
   useEffect(() => {
     setAmount(cart.reduce((total, item) => total + item.price * item.quantity, 0));
@@ -68,7 +70,7 @@ export function NewOrder() {
       <Header />
 
       <ContentWrapper>
-        <main className="contentMaxWidthWrapper">
+        <main>
           <section className={showPaymentSection ? "hide" : ""}>
             <h1>Meu pedido</h1>
 

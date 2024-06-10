@@ -2,37 +2,43 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   height: 100vh;
-  width: 100%;
+  width: 100vw;
 
   display: grid;
   grid-template-rows: min-content auto;
   grid-template-areas:
   "header"
-  "contentScrollWrapper";
+  "contentWrapper";
   overflow: hidden;
+`;
 
-  > .contentScrollWrapper {
-    overflow: overlay;
-    grid-area: contentScrollWrapper;
+export const ContentWrapper = styled.div`
+  grid-area: contentWrapper;
+  
+  display: grid;
+  grid-template-rows: auto min-content;
+  grid-template-columns: 100%;
+  grid-template-areas: 
+  "main"
+  "footer";
+  overflow: overlay;
 
-    display: grid;
-    grid-template-rows: auto min-content;
-    grid-template-columns: 100%;
+  > main {
+    grid-area: main;
+    justify-self: center;
 
-
-    .empty {
-      display: flex;
-      width: 100%;
-      align-self: center;
-      justify-content: center;
-      gap: 1rem;
-      padding-block: 4rem;
-
-      p, svg {
-        color: ${({ theme }) => theme.COLORS.LIGHT_700};
-        font-size: clamp(1.8rem, calc(1rem + 2vw), 3rem);
-      }
+    @media(max-width: 719px) {
+      padding-inline: 0;
     }
+
+    > .noAction {
+      color: ${({ theme }) => theme.COLORS.LIGHT_700};
+    }
+  }
+
+  > footer {
+    grid-area: footer;
+    margin-top: 4rem;
   }
 `;
 
