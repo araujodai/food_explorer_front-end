@@ -1,6 +1,7 @@
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 import { Button } from "../Button";
+import { notify } from "../Notification";
 
 import { Container } from "./styles";
 
@@ -10,7 +11,7 @@ export function Stepper({ quantity, setQuantity }) {
     if (quantity < 10) {
       setQuantity(prevState => prevState + 1);
     } else {
-      alert("Você atingiu o máximo permitido.");
+      notify.info("Você atingiu o máximo permitido");
     }
   };
 
@@ -18,7 +19,7 @@ export function Stepper({ quantity, setQuantity }) {
     if (quantity > 1) {
       setQuantity(prevState => prevState - 1);
     } else {
-      alert("A quantidade mínima é de 01 unidade.");
+      notify.info("A quantidade mínima é de 01 unidade");
     }
   };  
 

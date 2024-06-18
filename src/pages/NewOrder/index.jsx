@@ -59,7 +59,6 @@ export function NewOrder() {
       };
     };
   };
-  console.log(paymentMethod)
 
   useEffect(() => {
     setAmount(cart.reduce((total, item) => total + item.price * item.quantity, 0));

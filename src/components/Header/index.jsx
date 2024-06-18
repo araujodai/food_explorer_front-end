@@ -66,9 +66,6 @@ export function Header() {
 
   useEffect(() => {
     setAmount(cart.reduce((total, item) => total + item.quantity, 0));
-
-    
-
   }, [cart]);
 
   return (
