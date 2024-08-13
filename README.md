@@ -18,9 +18,15 @@
 <br>
 
 ## Projeto
-Food Explorer é uma aplicação que simula um cardápio digital para um restaurante fictício, essa aplicação conta com front-end e back-end desenvolvidos com tecnologias aprendidas na trilha Explorer da [Rocketseat](https://github.com/Rocketseat). 
+Food Explorer é uma aplicação que simula um cardápio digital para um restaurante fictício, essa aplicação conta com front-end e back-end desenvolvidos com tecnologias aprendidas na trilha Explorer da [Rocketseat](https://github.com/Rocketseat). Aplicação desenvolvida com mobile first.
 
 A aplicação pode ser utilizada através de um login com e-mail e senha, que deve ser registrado previamente, e conta com dois tipos de usuário, usuário comum e administrador.
+
+  * Preview Desktop:
+    ![review](https://github.com/user-attachments/assets/2da7aaf5-7224-4545-adbf-610f25b61105)
+
+  * Preview Mobile:<br>
+    ![review_mobile](https://github.com/user-attachments/assets/892a4b2b-ec6a-444c-b57d-ab0ef41b9c92)
 
 <br>
 
@@ -32,8 +38,6 @@ A aplicação pode ser utilizada através de um login com e-mail e senha, que de
 - Styled Components
 - Axios
 - Vite
-
-Projeto desenvolvido com mobile first.
 
 Deploy: Netlify
 
